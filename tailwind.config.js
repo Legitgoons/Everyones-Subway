@@ -7,6 +7,7 @@ module.exports = {
       },
       fontFamily: {
         'suit': ['SUIT', 'sans-serif'],
+        'jalnan': ['JALNAN', 'sans-serif'],
       },
       fontSize: {
         '12': '12px',

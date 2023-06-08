@@ -16,6 +16,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'JALNAN';
+  src: url(./assets/font/Jalnan.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @layer components {
   .h1b {
     @apply font-suit text-32 font-semibold leading-120;

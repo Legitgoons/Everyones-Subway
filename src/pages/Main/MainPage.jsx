@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 const MainPage = () => {
 
   return (
-    <div>
+    <div className='w-screen h- flex items-end'>
       <NavLink to="/select">
-        <button>
+        <button className='flex w-80 h-14 justify-center items-center bg-my-green rounded-xl'>
           경로 설정
         </button>
       </NavLink>

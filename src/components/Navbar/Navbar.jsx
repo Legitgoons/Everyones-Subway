@@ -1,9 +1,44 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+import { ReactComponent as FooterHome } from '../../assets/images/footerHome.svg';
+import { ReactComponent as FooterHomeOn } from '../../assets/images/footerHomeOn.svg';
+import { ReactComponent as FooterStar } from '../../assets/images/footerStar.svg';
+import { ReactComponent as FooterStarOn } from '../../assets/images/footerStarOn.svg';
+import { ReactComponent as FooterInfo } from '../../assets/images/footerInfo.svg';
+import { ReactComponent as FooterInfoOn } from '../../assets/images/footerInfoOn.svg';
+import { ReactComponent as FooterMyinfo } from '../../assets/images/footerMyinfo.svg';
+import { ReactComponent as FooterMyinfoOn } from '../../assets/images/footerMyinfoOn.svg';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const checkCurrentPath = (path) => {
+    return location.pathname === path;
+  };
+
+  const handleHomeClick = () => navigate('/main');
+  const handleStarClick = () => navigate('/star');
+  // const handleInfoClick = () => navigate('/');
+  // const handleMyinfoClick = () => navigate('/');
+
   return (
-    <div className='place-self-end'>
-      네브바에용
+    <div className='h-[9.1vh] justify-self-end w-screen flex items-center justify-around'>
+      <button onClick={handleHomeClick}>
+        {checkCurrentPath('/main') ? <FooterHomeOn /> : <FooterHome />}
+      </button>
+      <button onClick={handleStarClick}>
+        {checkCurrentPath('/star') ? <FooterStarOn /> : <FooterStar />}
+      </button>
+      <button>
+        {/* {checkCurrentPath('/info') ? <FooterInfoOn /> : <FooterInfo />} */}
+        <FooterInfo />
+      </button>
+      <button>
+        {/* {checkCurrentPath('/myInfo') ? <FooterMyinfoOn /> : <FooterMyinfo />} */}
+        <FooterMyinfo />
+      </button>
     </div>
   );
 };
