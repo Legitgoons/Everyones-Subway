@@ -1,3 +1,87 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: 'SUIT';
+  src: url(./assets/font/SUIT-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT';
+  src: url(./assets/font/SUIT-SemiBold.ttf) format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@layer components {
+  .h1b {
+    @apply font-suit text-32 font-semibold leading-120;
+  }
+
+  .h1r {
+    @apply font-suit text-32 font-normal leading-120;
+  }
+
+  .h2b {
+    @apply font-suit text-28 font-semibold leading-120;
+  }
+
+  .h2r {
+    @apply font-suit text-28 font-normal leading-120;
+  }
+
+  .h3b {
+    @apply font-suit text-24 font-semibold leading-120;
+  }
+
+  .h3r {
+    @apply font-suit text-24 font-normal leading-120;
+  }
+
+  .h4b {
+    @apply font-suit text-20 font-semibold leading-130;
+  }
+
+  .h4r {
+    @apply font-suit text-20 font-normal leading-130;
+  }
+
+  .p1b {
+    @apply font-suit text-18 font-semibold leading-140;
+  }
+
+  .p1r {
+    @apply font-suit text-18 font-normal leading-140;
+  }
+
+  .p2b {
+    @apply font-suit text-16 font-semibold leading-140;
+  }
+
+  .p2r {
+    @apply font-suit text-16 font-normal leading-140;
+  }
+
+  .p3b {
+    @apply font-suit text-14 font-semibold leading-140;
+  }
+
+  .p3r {
+    @apply font-suit text-14 font-normal leading-140;
+  }
+
+  .captionb {
+    @apply font-suit text-12 font-semibold leading-140;
+  }
+
+  .captionr {
+    @apply font-suit text-12 font-normal leading-140;
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function StationSelect() {
+const StationSelect = ({ onStationSelect }) => {
   const [stations, setStations] = useState([]);
   const [lineNum, setLineNum] = useState('');
   const [stationName, setStationName] = useState('');
@@ -23,6 +23,7 @@ function StationSelect() {
 
   const handleStationNameChange = (event) => {
     setStationName(event.target.value);
+    onStationSelect(event.target.value);
   }
 
   const filteredStations = stations.filter(station => station.line_num === lineNum);
@@ -48,6 +49,6 @@ function StationSelect() {
       <h1>{stationName}</h1>
     </div>
   );
-}
+};
 
 export default StationSelect;
