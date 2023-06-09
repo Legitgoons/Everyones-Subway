@@ -55,6 +55,13 @@ module.exports = {
         normal: 400,
         semibold: 600,
       },
+      padding: {
+        '1/2': '50%',
+        full: '100%',
+      },
+      borderRadius: {
+        20: '20px',
+      },
     },
   },
   plugins: [],
