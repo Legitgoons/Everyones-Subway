@@ -4,21 +4,20 @@ module.exports = {
     extend: {
       colors: {
         p1: '#5ACE6F',
-        p2: 'linear-gradient(0deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15)), #5ACE6F;',
-        p3: 'linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), #5ACE6F;',
-        p4: 'linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #5ACE6F;',
-        p5: 'linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), #5ACE6F;',
-        p6: 'linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #5ACE6F;',
-        p7: 'linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), #5ACE6F;',
+        p2: '#74d586',
+        p3: '#8bde9a',
+        p4: '#ace7b7',
+        p5: '#d6f4dc',
+        p6: '#effbf1',
+        p7: '#f7fdf9',
 
         g1: '#1A1A1A',
-        g2: 'linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), #1A1A1A;',
-        g3: 'linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), #1A1A1A;',
-        g4: 'linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), #1A1A1A;',
-        g5: 'linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #1A1A1A;',
-        g6: 'linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #1A1A1A;',
-        'g-white':
-          'linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #1A1A1A;',
+        g2: '#474747',
+        g3: '#8c8c8c',
+        g4: '#d1d1d1',
+        g5: '#e8e8e8',
+        g6: '#f3f3f3',
+        'g-white': '#ffffff',
 
         l1: '#2B3B91',
         l2: '#61B257',
