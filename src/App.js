@@ -4,7 +4,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar"
 import SplashPage from "./pages/Splash/SplashPage"
 import MainPage from "./pages/Main/MainPage"
-import SelectPage from "./pages/Main/SelectPage";
+import SelectPage from "./pages/Main/PathSelectPage";
+import RouteInfo from "./pages/Main/SelectRouteInfoPage";
 import StarPage from "./pages/Star/StarPage"
 import NotFound from "./pages/NotFoundPage";
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<SplashPage />} />
           <Route path="/main" element={<MainPage />} />
           <Route path="/select" element={<SelectPage />} />
+          <Route path="/routeinfo" element={<RouteInfo />} />
           <Route path="/star" element={<StarPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
