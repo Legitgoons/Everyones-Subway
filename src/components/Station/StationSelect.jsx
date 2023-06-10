@@ -65,7 +65,7 @@ const StationSelect = ({ departure }) => {
 
   return (
     <div className='px-5'>
-      <SesacText>{departure ? '출발역' : '도착역'}을 선택주세요.</SesacText>
+      <SesacText>{departure ? '출발역' : '도착역'}을 선택해주세요.</SesacText>
       <div className='h-4'></div>
       <div className='rounded-3xl h-12 border border-g5 flex items-center justify-between px-4'>
         <input
