@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ReactComponent as Sesac } from '../../assets/images/sesacIcon.svg'
 import { ReactComponent as Line1 } from '../../assets/lines/1호선.svg'
+import { ReactComponent as Line2 } from '../../assets/lines/2호선.svg'
+import { ReactComponent as Line3 } from '../../assets/lines/3호선.svg'
 import { ReactComponent as Line4 } from '../../assets/lines/4호선.svg'
 import Button from '../common/Button';
 import Horizon from '../common/Horizon';
@@ -9,6 +11,8 @@ import Header from '../Header/Header';
 const dummy = {
   travelTime: 24,
   depTime: '17:00',
+  transTime1: '17:02', //이건 아직 안만듬
+  transTime2: '',
   arrTime: '17:24',
   stops: 6,
   transfer: 1,
@@ -29,9 +33,9 @@ const dummy = {
 }
 
 const RouteInfo = () => {
-  const [activeButton, setActiveButton] = useState("shortestTime");
-  const shortestTimeClasses = activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
-  const minimumTransferClasses = activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
+  const [activeButton, setActiveButton] = useState('shortestTime');
+  const shortestTimeClasses = activeButton === 'shortestTime' ? 'bg-p1 text-white' : 'bg-g6 text-g4';
+  const minimumTransferClasses = activeButton === 'minimumTransfer' ? 'bg-p1 text-white' : 'bg-g6 text-g4';
 
   const {
     travelTime, depTime, arrTime, stops,
@@ -39,9 +43,9 @@ const RouteInfo = () => {
   } = dummy;
 
   const TimeButton = ({ time, label }) => (
-    <div className='flex w-40 justify-around'>
+    <div className='flex w-36 h-16 justify-around border border-solid border-g5 border-1 rounded-20'>
       <button className='p3b text-g4'>&lt;</button>
-      <div className='flex flex-col'>
+      <div className='flex flex-col justify-center'>
         <p className='p3b text-g3'>{label}</p>
         <p className='h4b'>{time}</p>
       </div>
@@ -56,39 +60,45 @@ const RouteInfo = () => {
     </div>
   );
 
+  // const TransLine = () => {
+  //   <div className='w-0 h-1 border'>
+
+  //   </div>
+  // }
+
   return (
     <div className='flex flex-col items-center h-[calc(100vh-9.1vh)]'>
       <Header pageName='이동 경로 정보' canBackward />
-      <div className='flex justify-evenly items-center h-44'>
-        <div className='flex flex-col justify-center items-center h-40 w-40 border-solid border-1 border-g5'>
+      <div className='flex justify-between items-center h-44 w-5/6'>
+        <div className='flex flex-col justify-center items-center h-36 w-36 border border-solid border-g5 border-1 rounded-20'>
           <Sesac />
           <p className='h4b'>소요시간</p>
           <p className='h1b text-p1'>{travelTime}분</p>
         </div>
-        <div className='flex flex-col justify-evenly items-center h-40 w-40'>
-          <TimeButton time={depTime} label="출발시간" />
-          <TimeButton time={arrTime} label="도착시간" />
+        <div className='flex flex-col justify-between items-center h-36 w-36'>
+          <TimeButton time={depTime} label='출발시간' />
+          <TimeButton time={arrTime} label='도착시간' />
         </div>
       </div>
       <div className='w-full h-12'>
         <button
           className={`w-1/2 h-full rounded-t-20 rounded-b-none p2b ${shortestTimeClasses}`}
-          onClick={() => setActiveButton("shortestTime")}
+          onClick={() => setActiveButton('shortestTime')}
         >
           최단시간
         </button>
         <button
           className={`w-1/2 h-full rounded-t-20 rounded-b-none p2b ${minimumTransferClasses}`}
-          onClick={() => setActiveButton("minimumTransfer")}
+          onClick={() => setActiveButton('minimumTransfer')}
         >
           최소환승
         </button>
       </div>
       <div className='w-full h-0.5 bg-p1' />
       <div className='flex justify-evenly w-full h-16'>
-        <RouteDetails label="정차역" value={`${stops}개역`} />
-        <RouteDetails label="환승" value={`${transfer}회`} />
-        <RouteDetails label="카드" value={`${cost}원`} />
+        <RouteDetails label='정차역' value={`${stops}개역`} />
+        <RouteDetails label='환승' value={`${transfer}회`} />
+        <RouteDetails label='카드' value={`${cost}원`} />
       </div>
       <Horizon />
       <div className='flex flex-col w-full flex-grow'>
