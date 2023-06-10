@@ -21,7 +21,7 @@ const dummy = {
   transSt1: '서울역',
   transSt2: '',
   arrSt: '동작역',
-  stBtw1: 1,
+  stBtw1: 0,
   stBtw2: 0,
   stBtw3: 5,
   depLine: '1호선',
@@ -32,7 +32,7 @@ const dummy = {
   fastExit: '1-3',
 };
 
-const RouteInfo = () => { 
+const RouteInfo = () => {
   const [activeButton, setActiveButton] = useState("shortestTime");
   const shortestTimeClasses = activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
   const minimumTransferClasses = activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
@@ -42,7 +42,7 @@ const RouteInfo = () => {
   const arriveStationName = useSelector(state => state.path.arriveStation.name);
   const departStationName = useSelector(state => state.path.departureStation.name);
 
-  
+
   const {
     travelTime,
     depTime,
@@ -50,10 +50,8 @@ const RouteInfo = () => {
     stops,
     transfer,
     cost,
-    depSt,
-    arrSt,
-    depLine,
-    arrLine,
+    transSt1,
+    transTime1,
   } = dummy;
 
   const TimeButton = ({ time, label }) => (
@@ -73,6 +71,36 @@ const RouteInfo = () => {
       <p className='p1b'>{value}</p>
     </div>
   );
+
+  const routes = [
+    { time: depTime, line: departLine, name: departStationName },
+    { time: transTime1, line: departLine, name: transSt1 },
+    { time: '환승', line: arriveLine, name: transSt1 },
+    { time: arrTime, line: arriveLine, name: arriveStationName },
+  ];
+
+
+  const RouteIcons = ({ time, line, name }) => (
+    <div className='flex'>
+      <div className='flex basis-2/5'>
+        <p className='p3r basis-1/2'>{time}</p>
+        <div className='flex basis-1/2'>
+          <LineIcon line={lineNameMap[line]} />
+          <p className='p3b pl-1'>{name}</p>
+        </div>
+      </div>
+      <div className='basis-1/3' />
+      <div className='flex-grow' />
+    </div>
+  );
+
+  const LineLine = ({ line }) => {
+    return (
+      <div
+        className={`${`bg-l${line}`} w-2 h-4 border border-8px border-solid`}
+      />
+    );
+  };
 
   return (
     <div className='flex flex-col items-center h-screen' style={{ height: "calc(100vh - 9.1vh)" }}>
@@ -109,25 +137,42 @@ const RouteInfo = () => {
         <RouteDetails label='카드' value={`${cost}원`} />
       </div>
       <Horizon />
-      <div className='flex flex-col w-full flex-grow'>
-        <div className='flex justify-around'>
-          <div className='flex'>
-            <p className='p3r'>{depTime}</p>
-            <LineIcon line={lineNameMap[departLine]} />
-            <p className='p3b'>{departStationName}</p>
-          </div>
-          <div />
-          <div />
-        </div>
-        <div className='flex justify-around'>
-          <div className='flex'>
-            <p className='p3r'>{arrTime}</p>
-            <LineIcon line={lineNameMap[arriveLine]} />
-            <p className='p3b'>{arriveStationName}</p>
-          </div>
-          <div />
-          <div />
-        </div>
+      <div className='flex flex-col w-full flex-grow mt-4'>
+        {routes.map((route, index) => {
+          // 배열을 담을 컴포넌트
+          const components = [];
+
+          // 현재 요소가 첫 번째 요소가 아니고, 현재 요소의 'line'이 이전 요소의 'line'과 같을 때
+          if (index > 0 && route.line === routes[index - 1].line) {
+            components.push(
+            <div className='flex'>
+              <div className='flex basis-2/5'>
+                <p className='basis-1/2'></p>
+                <div className='flex basis-1/2'>
+                  <LineLine line={route.line}/>
+                </div>
+              </div>
+            </div>
+            );
+          }
+          if (index > 0 && route.line !== routes[index - 1].line) {
+            components.push(
+              <div className='flex'>
+              <div className='flex basis-2/5'>
+                <p className='basis-1/2'></p>
+                <div className='flex basis-1/2'>
+                  <div>점찍기</div>
+                </div>
+              </div>
+            </div>
+            );
+          }
+          // RouteIcons 컴포넌트도 추가로 출력
+          components.push(<RouteIcons time={route.time} line={route.line} name={route.name} />);
+
+          // 컴포넌트 배열 반환
+          return components;
+        })}
       </div>
       <Button>호출하기</Button>
     </div>
