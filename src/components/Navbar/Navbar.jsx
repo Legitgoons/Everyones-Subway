@@ -14,30 +14,28 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const checkCurrentPath = (path) => {
-    return location.pathname === path;
+  const checkCurrentPath = (paths) => {
+    return paths.includes(location.pathname);
   };
 
   const handleHomeClick = () => navigate('/main');
   const handleStarClick = () => navigate('/star');
-  // const handleInfoClick = () => navigate('/');
-  // const handleMyinfoClick = () => navigate('/');
+  const handleInfoClick = () => navigate('/');
+  const handleMyinfoClick = () => navigate('/routeInfo');
 
   return (
     <div className='h-[9.1vh] justify-self-end w-screen flex items-center justify-around'>
       <button onClick={handleHomeClick}>
-        {checkCurrentPath('/main') ? <FooterHomeOn /> : <FooterHome />}
+        {checkCurrentPath(['/main', '/select']) ? <FooterHomeOn /> : <FooterHome />}
       </button>
       <button onClick={handleStarClick}>
-        {checkCurrentPath('/star') ? <FooterStarOn /> : <FooterStar />}
+        {checkCurrentPath(['/star']) ? <FooterStarOn /> : <FooterStar />}
       </button>
-      <button>
-        {/* {checkCurrentPath('/info') ? <FooterInfoOn /> : <FooterInfo />} */}
-        <FooterInfo />
+      <button onClick={handleInfoClick}>
+        {checkCurrentPath(['/']) ? <FooterInfoOn /> : <FooterInfo />}
       </button>
-      <button>
-        {/* {checkCurrentPath('/myInfo') ? <FooterMyinfoOn /> : <FooterMyinfo />} */}
-        <FooterMyinfo />
+      <button onClick={handleMyinfoClick}>
+        {checkCurrentPath(['/myInfo']) ? <FooterMyinfoOn /> : <FooterMyinfo />}
       </button>
     </div>
   );
