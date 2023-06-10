@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { ReactComponent as Sesac } from '../../assets/images/sesacIcon.svg'
+import React, { useEffect, useState } from 'react';
+import { ReactComponent as Sesac } from '../../assets/images/sesacIcon.svg';
 import Button from '../common/Button';
 import Horizon from '../common/Horizon';
 import Header from '../Header/Header';
+import { initStationState } from '../../store';
+import { useDispatch } from 'react-redux';
 
 const dummy = {
   travelTime: 24,
@@ -24,16 +26,31 @@ const dummy = {
   arrLine: '4호선',
   fastTrans: '1-2',
   fastExit: '1-3',
-}
+};
 
 const RouteInfo = () => {
-  const [activeButton, setActiveButton] = useState("shortestTime");
-  const shortestTimeClasses = activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
-  const minimumTransferClasses = activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
+  const [activeButton, setActiveButton] = useState('shortestTime');
+  const shortestTimeClasses =
+    activeButton === 'shortestTime' ? 'bg-p1 text-white' : 'bg-g6 text-g4';
+  const minimumTransferClasses =
+    activeButton === 'minimumTransfer' ? 'bg-p1 text-white' : 'bg-g6 text-g4';
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initStationState());
+  }, []);
 
   const {
-    travelTime, depTime, arrTime, stops,
-    transfer, cost, depSt, arrSt, depLine, arrLine
+    travelTime,
+    depTime,
+    arrTime,
+    stops,
+    transfer,
+    cost,
+    depSt,
+    arrSt,
+    depLine,
+    arrLine,
   } = dummy;
 
   const TimeButton = ({ time, label }) => (
@@ -55,7 +72,10 @@ const RouteInfo = () => {
   );
 
   return (
-    <div className='flex flex-col items-center h-screen' style={{height: "calc(100vh - 9.1vh)"}}>
+    <div
+      className='flex flex-col items-center h-screen'
+      style={{ height: 'calc(100vh - 9.1vh)' }}
+    >
       <Header pageName='이동 경로 정보' canBackward />
       <div className='flex justify-evenly items-center h-44'>
         <div className='flex flex-col justify-center items-center h-40 w-40 border-solid border-1 border-g5'>
@@ -64,29 +84,29 @@ const RouteInfo = () => {
           <p className='h1b text-p1'>{travelTime}분</p>
         </div>
         <div className='flex flex-col justify-evenly items-center h-40 w-40'>
-          <TimeButton time={depTime} label="출발시간" />
-          <TimeButton time={arrTime} label="도착시간" />
+          <TimeButton time={depTime} label='출발시간' />
+          <TimeButton time={arrTime} label='도착시간' />
         </div>
       </div>
       <div className='w-full h-12'>
         <button
           className={`w-1/2 h-full rounded-t-20 rounded-b-none p2b ${shortestTimeClasses}`}
-          onClick={() => setActiveButton("shortestTime")}
+          onClick={() => setActiveButton('shortestTime')}
         >
           최단시간
         </button>
         <button
           className={`w-1/2 h-full rounded-t-20 rounded-b-none p2b ${minimumTransferClasses}`}
-          onClick={() => setActiveButton("minimumTransfer")}
+          onClick={() => setActiveButton('minimumTransfer')}
         >
           최소환승
         </button>
       </div>
       <div className='w-full h-0.5 bg-p1' />
       <div className='flex justify-evenly w-full h-16'>
-        <RouteDetails label="정차역" value={`${stops}개역`} />
-        <RouteDetails label="환승" value={`${transfer}회`} />
-        <RouteDetails label="카드" value={`${cost}원`} />
+        <RouteDetails label='정차역' value={`${stops}개역`} />
+        <RouteDetails label='환승' value={`${transfer}회`} />
+        <RouteDetails label='카드' value={`${cost}원`} />
       </div>
       <Horizon />
       <div className='flex flex-col w-full flex-grow'>
