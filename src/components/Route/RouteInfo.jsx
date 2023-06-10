@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { ReactComponent as Sesac } from '../../assets/images/sesacIcon.svg'
+import { ReactComponent as TranslineDots } from '../../assets/images/translineDots.svg'
 import Button from '../common/Button';
 import Horizon from '../common/Horizon';
 import Header from '../Header/Header';
-import LineIcon from '../Station/LineIcon';
+import RouteInfoIcons from './RouteInfoIcons';
+import RouteInfoTimeButton from './RouteInfoTimeButton';
+import RouteInfoDetails from './RouteInfoDetails';
 import { lineNameMap } from '../../constant/lineNum';
 import { initStationState } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 const dummy = {
   travelTime: 24,
@@ -42,7 +46,6 @@ const RouteInfo = () => {
   const arriveStationName = useSelector(state => state.path.arriveStation.name);
   const departStationName = useSelector(state => state.path.departureStation.name);
 
-
   const {
     travelTime,
     depTime,
@@ -54,24 +57,6 @@ const RouteInfo = () => {
     transTime1,
   } = dummy;
 
-  const TimeButton = ({ time, label }) => (
-    <div className='flex w-36 h-16 justify-around border border-solid border-g5 border-1 rounded-20'>
-      <button className='p3b text-g4'>&lt;</button>
-      <div className='flex flex-col justify-center'>
-        <p className='p3b text-g3'>{label}</p>
-        <p className='h4b'>{time}</p>
-      </div>
-      <button className='p3b text-g4'>&gt;</button>
-    </div>
-  );
-
-  const RouteDetails = ({ label, value }) => (
-    <div className='flex flex-col justify-center items-center'>
-      <p className='p3b text-g3'>{label}</p>
-      <p className='p1b'>{value}</p>
-    </div>
-  );
-
   const routes = [
     { time: depTime, line: departLine, name: departStationName },
     { time: transTime1, line: departLine, name: transSt1 },
@@ -79,25 +64,10 @@ const RouteInfo = () => {
     { time: arrTime, line: arriveLine, name: arriveStationName },
   ];
 
-
-  const RouteIcons = ({ time, line, name }) => (
-    <div className='flex'>
-      <div className='flex basis-2/5'>
-        <p className='p3r basis-1/2'>{time}</p>
-        <div className='flex basis-1/2'>
-          <LineIcon line={lineNameMap[line]} />
-          <p className='p3b pl-1'>{name}</p>
-        </div>
-      </div>
-      <div className='basis-1/3' />
-      <div className='flex-grow' />
-    </div>
-  );
-
-  const LineLine = ({ line }) => {
+  const RouteInfoLine = ({ line }) => {  // 얘 분리하니까 동작을 안함;
     return (
       <div
-        className={`${`bg-l${line}`} w-2 h-4 border border-8px border-solid`}
+        className={`${`bg-l${lineNameMap[line]}`} w-1 h-4 border border-8px border-solid`}
       />
     );
   };
@@ -112,8 +82,8 @@ const RouteInfo = () => {
           <p className='h1b text-p1'>{travelTime}분</p>
         </div>
         <div className='flex flex-col justify-evenly items-center h-40 w-40'>
-          <TimeButton time={depTime} label="출발시간" />
-          <TimeButton time={arrTime} label="도착시간" />
+          <RouteInfoTimeButton time={depTime} label="출발시간" />
+          <RouteInfoTimeButton time={arrTime} label="도착시간" />
         </div>
       </div>
       <div className='w-full h-12'>
@@ -132,9 +102,9 @@ const RouteInfo = () => {
       </div>
       <div className='w-full h-0.5 bg-p1' />
       <div className='flex justify-evenly w-full h-16'>
-        <RouteDetails label='정차역' value={`${stops}개역`} />
-        <RouteDetails label='환승' value={`${transfer}회`} />
-        <RouteDetails label='카드' value={`${cost}원`} />
+        <RouteInfoDetails label='정차역' value={`${stops}개역`} />
+        <RouteInfoDetails label='환승' value={`${transfer}회`} />
+        <RouteInfoDetails label='카드' value={`${cost}원`} />
       </div>
       <Horizon />
       <div className='flex flex-col w-full flex-grow mt-4'>
@@ -148,8 +118,8 @@ const RouteInfo = () => {
             <div className='flex'>
               <div className='flex basis-2/5'>
                 <p className='basis-1/2'></p>
-                <div className='flex basis-1/2'>
-                  <LineLine line={route.line}/>
+                <div className='flex basis-1/2 pl-2'>
+                  <RouteInfoLine line={route.line}/>
                 </div>
               </div>
             </div>
@@ -160,15 +130,15 @@ const RouteInfo = () => {
               <div className='flex'>
               <div className='flex basis-2/5'>
                 <p className='basis-1/2'></p>
-                <div className='flex basis-1/2'>
-                  <div>점찍기</div>
+                <div className='flex basis-1/2 pl-2'>
+                  <TranslineDots />
                 </div>
               </div>
             </div>
             );
           }
           // RouteIcons 컴포넌트도 추가로 출력
-          components.push(<RouteIcons time={route.time} line={route.line} name={route.name} />);
+          components.push(<RouteInfoIcons time={route.time} line={route.line} name={route.name} />);
 
           // 컴포넌트 배열 반환
           return components;
