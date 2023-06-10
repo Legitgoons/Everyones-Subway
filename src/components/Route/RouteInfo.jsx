@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { ReactComponent as Sesac } from '../../assets/images/sesacIcon.svg'
-import { ReactComponent as Line1 } from '../../assets/lines/1호선.svg'
-import { ReactComponent as Line2 } from '../../assets/lines/2호선.svg'
-import { ReactComponent as Line3 } from '../../assets/lines/3호선.svg'
-import { ReactComponent as Line4 } from '../../assets/lines/4호선.svg'
 import Button from '../common/Button';
 import Horizon from '../common/Horizon';
 import Header from '../Header/Header';
+import LineIcon from '../Station/LineIcon';
+import { lineNameMap } from '../../constant/lineNum';
+import { initStationState } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
 
 const dummy = {
   travelTime: 24,
@@ -30,16 +30,30 @@ const dummy = {
   arrLine: '4호선',
   fastTrans: '1-2',
   fastExit: '1-3',
-}
+};
 
-const RouteInfo = () => {
-  const [activeButton, setActiveButton] = useState('shortestTime');
-  const shortestTimeClasses = activeButton === 'shortestTime' ? 'bg-p1 text-white' : 'bg-g6 text-g4';
-  const minimumTransferClasses = activeButton === 'minimumTransfer' ? 'bg-p1 text-white' : 'bg-g6 text-g4';
+const RouteInfo = () => { 
+  const [activeButton, setActiveButton] = useState("shortestTime");
+  const shortestTimeClasses = activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
+  const minimumTransferClasses = activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
 
+  const arriveLine = useSelector(state => state.path.arriveStation.line);
+  const departLine = useSelector(state => state.path.departureStation.line);
+  const arriveStationName = useSelector(state => state.path.arriveStation.name);
+  const departStationName = useSelector(state => state.path.departureStation.name);
+
+  
   const {
-    travelTime, depTime, arrTime, stops,
-    transfer, cost, depSt, arrSt, depLine, arrLine
+    travelTime,
+    depTime,
+    arrTime,
+    stops,
+    transfer,
+    cost,
+    depSt,
+    arrSt,
+    depLine,
+    arrLine,
   } = dummy;
 
   const TimeButton = ({ time, label }) => (
@@ -60,14 +74,8 @@ const RouteInfo = () => {
     </div>
   );
 
-  // const TransLine = () => {
-  //   <div className='w-0 h-1 border'>
-
-  //   </div>
-  // }
-
   return (
-    <div className='flex flex-col items-center h-[calc(100vh-9.1vh)]'>
+    <div className='flex flex-col items-center h-screen' style={{ height: "calc(100vh - 9.1vh)" }}>
       <Header pageName='이동 경로 정보' canBackward />
       <div className='flex justify-between items-center h-44 w-5/6'>
         <div className='flex flex-col justify-center items-center h-36 w-36 border border-solid border-g5 border-1 rounded-20'>
@@ -75,9 +83,9 @@ const RouteInfo = () => {
           <p className='h4b'>소요시간</p>
           <p className='h1b text-p1'>{travelTime}분</p>
         </div>
-        <div className='flex flex-col justify-between items-center h-36 w-36'>
-          <TimeButton time={depTime} label='출발시간' />
-          <TimeButton time={arrTime} label='도착시간' />
+        <div className='flex flex-col justify-evenly items-center h-40 w-40'>
+          <TimeButton time={depTime} label="출발시간" />
+          <TimeButton time={arrTime} label="도착시간" />
         </div>
       </div>
       <div className='w-full h-12'>
@@ -105,8 +113,8 @@ const RouteInfo = () => {
         <div className='flex justify-around'>
           <div className='flex'>
             <p className='p3r'>{depTime}</p>
-            <Line1 />
-            <p className='p3b'>{depSt}</p>
+            <LineIcon line={lineNameMap[departLine]} />
+            <p className='p3b'>{departStationName}</p>
           </div>
           <div />
           <div />
@@ -114,8 +122,8 @@ const RouteInfo = () => {
         <div className='flex justify-around'>
           <div className='flex'>
             <p className='p3r'>{arrTime}</p>
-            <Line4 />
-            <p className='p3b'>{arrSt}</p>
+            <LineIcon line={lineNameMap[arriveLine]} />
+            <p className='p3b'>{arriveStationName}</p>
           </div>
           <div />
           <div />
