@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ReactComponent as Sesac } from '../../assets/images/sesacIcon.svg'
+import { ReactComponent as Line1 } from '../../assets/lines/1호선.svg'
+import { ReactComponent as Line4 } from '../../assets/lines/4호선.svg'
 import Button from '../common/Button';
 import Horizon from '../common/Horizon';
 import Header from '../Header/Header';
@@ -55,7 +57,7 @@ const RouteInfo = () => {
   );
 
   return (
-    <div className='flex flex-col items-center h-screen' style={{height: "calc(100vh - 9.1vh)"}}>
+    <div className='flex flex-col items-center h-[calc(100vh-9.1vh)]'>
       <Header pageName='이동 경로 정보' canBackward />
       <div className='flex justify-evenly items-center h-44'>
         <div className='flex flex-col justify-center items-center h-40 w-40 border-solid border-1 border-g5'>
@@ -93,7 +95,7 @@ const RouteInfo = () => {
         <div className='flex justify-around'>
           <div className='flex'>
             <p className='p3r'>{depTime}</p>
-            <div>{depLine}</div>
+            <Line1 />
             <p className='p3b'>{depSt}</p>
           </div>
           <div />
@@ -102,7 +104,7 @@ const RouteInfo = () => {
         <div className='flex justify-around'>
           <div className='flex'>
             <p className='p3r'>{arrTime}</p>
-            <div>{arrLine}</div>
+            <Line4 />
             <p className='p3b'>{arrSt}</p>
           </div>
           <div />
