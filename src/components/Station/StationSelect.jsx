@@ -26,7 +26,6 @@ const StationSelect = ({ departure }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('리렌더링');
     axios.get('../assets/stations.json').then((response) => {
       setStations(response.data.DATA);
       const uniqueLineNums = [
