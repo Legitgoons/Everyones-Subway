@@ -1,6 +1,6 @@
 import React from 'react';
 
-const lineIcon = ({ line }) => {
+const LineIcon = ({ line }) => {
   return (
     <div
       className={`w-5 h-5 rounded-full ${`bg-l${line}`} text-g6 text-12 text-center`}
@@ -10,4 +10,4 @@ const lineIcon = ({ line }) => {
   );
 };
 
-export default lineIcon;
+export default LineIcon;

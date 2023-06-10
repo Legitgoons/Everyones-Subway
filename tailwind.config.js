@@ -28,9 +28,9 @@ module.exports = {
         l7: '#6B7228',
         l8: '#D2376E',
         l9: '#CAA846',
-        'l-gong': '#82B4E0',
-        'l-jung': '#8CC2A7',
-        'l-chun': '#4FAC7F',
+        l공: '#82B4E0',
+        l중: '#8CC2A7',
+        l춘: '#4FAC7F',
       },
       fontFamily: {
         suit: ['SUIT', 'sans-serif'],
@@ -62,6 +62,9 @@ module.exports = {
       borderRadius: {
         20: '20px',
         25: '25px',
+      },
+      height: {
+        100: '400px',
       },
     },
   },
