@@ -8,7 +8,6 @@ const StationSelectBtn = ({ children, station, onClick }) => {
     ? `bg-l${lineNameMap[station.line]}`
     : 'bg-g6';
   const textColor = station.name ? `text-g6` : 'text-g1';
-  console.log(backgroundColor);
 
   return (
     <button
