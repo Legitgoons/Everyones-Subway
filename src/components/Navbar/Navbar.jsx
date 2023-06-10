@@ -24,9 +24,13 @@ const Navbar = () => {
   const handleMyinfoClick = () => navigate('/routeInfo');
 
   return (
-    <div className='h-[9.1vh] justify-self-end w-screen flex items-center justify-around'>
+    <div className='h-[9.1vh] justify-self-end w-screen flex items-center justify-around bg-white'>
       <button onClick={handleHomeClick}>
-        {checkCurrentPath(['/main', '/select']) ? <FooterHomeOn /> : <FooterHome />}
+        {checkCurrentPath(['/main', '/select']) ? (
+          <FooterHomeOn />
+        ) : (
+          <FooterHome />
+        )}
       </button>
       <button onClick={handleStarClick}>
         {checkCurrentPath(['/star']) ? <FooterStarOn /> : <FooterStar />}
