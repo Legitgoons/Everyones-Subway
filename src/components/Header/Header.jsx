@@ -9,7 +9,7 @@ const Header = ({ pageName, canBackward }) => {
   };
 
   return (
-    <div>
+    <div className='flex items-center'>
       <div className='h-[7.25vh] px-3.5 bg-p1 w-screen flex items-center justify-center'>
         {canBackward && (
           <button onClick={onClickBackward} className='w-1/6'>
