@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import { ReactComponent as Sesac } from '../../assets/images/sesacIcon.svg'
-import { ReactComponent as TranslineDots } from '../../assets/images/translineDots.svg'
-import Button from '../common/Button';
-import Horizon from '../common/Horizon';
-import Header from '../Header/Header';
-import RouteInfoIcons from './RouteInfoIcons';
-import RouteInfoTimeButton from './RouteInfoTimeButton';
-import RouteInfoDetails from './RouteInfoDetails';
-import { lineNameMap } from '../../constant/lineNum';
-import { initStationState } from '../../store';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useState } from "react";
+import { ReactComponent as Sesac } from "../../assets/images/sesacIcon.svg";
+import { ReactComponent as TranslineDots } from "../../assets/images/translineDots.svg";
+import Button from "../common/Button";
+import Horizon from "../common/Horizon";
+import Header from "../Header/Header";
+import RouteInfoIcons from "./RouteInfoIcons";
+import RouteInfoTimeButton from "./RouteInfoTimeButton";
+import RouteInfoDetails from "./RouteInfoDetails";
+import { lineNameMap } from "../../constant/lineNum";
+import { initStationState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 const dummy = {
   travelTime: 24,
-  depTime: '17:00',
-  transTime1: '17:02', //이건 아직 안만듬
-  transTime2: '',
-  arrTime: '17:24',
+  depTime: "17:00",
+  transTime1: "17:02", //이건 아직 안만듬
+  transTime2: "",
+  arrTime: "17:24",
   stops: 6,
   transfer: 1,
   cost: 1250,
-  depSt: '시청',
-  transSt1: '서울역',
-  transSt2: '',
-  arrSt: '동작역',
+  depSt: "시청",
+  transSt1: "서울역",
+  transSt2: "",
+  arrSt: "동작역",
   stBtw1: 0,
   stBtw2: 0,
   stBtw3: 5,
@@ -38,13 +38,19 @@ const dummy = {
 
 const RouteInfo = () => {
   const [activeButton, setActiveButton] = useState("shortestTime");
-  const shortestTimeClasses = activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
-  const minimumTransferClasses = activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
+  const shortestTimeClasses =
+    activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
+  const minimumTransferClasses =
+    activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
 
-  const arriveLine = useSelector(state => state.path.arriveStation.line);
-  const departLine = useSelector(state => state.path.departureStation.line);
-  const arriveStationName = useSelector(state => state.path.arriveStation.name);
-  const departStationName = useSelector(state => state.path.departureStation.name);
+  const arriveLine = useSelector((state) => state.path.arriveStation.line);
+  const departLine = useSelector((state) => state.path.departureStation.line);
+  const arriveStationName = useSelector(
+    (state) => state.path.arriveStation.name
+  );
+  const departStationName = useSelector(
+    (state) => state.path.departureStation.name
+  );
 
   const {
     travelTime,
@@ -66,7 +72,8 @@ const RouteInfo = () => {
     { time: arrTime, line: arriveLine, name: arriveStationName, fast: fastExit },
   ];
 
-  const RouteInfoLine = ({ line }) => {  // 얘 분리하니까 동작을 안함;
+  const RouteInfoLine = ({ line }) => {
+    // 얘 분리하니까 동작을 안함;
     return (
       <div
         className={`${`bg-l${lineNameMap[line]}`} w-1 h-5 border border-8px border-solid`}
@@ -84,20 +91,20 @@ const RouteInfo = () => {
           <p className='h1b text-p1'>{travelTime}분</p>
         </div>
         <div className='flex flex-col justify-evenly items-center h-40 w-40'>
-          <RouteInfoTimeButton time={depTime} label="출발시간" />
-          <RouteInfoTimeButton time={arrTime} label="도착시간" />
+          <RouteInfoTimeButton time={depTime} label='출발시간' />
+          <RouteInfoTimeButton time={arrTime} label='도착시간' />
         </div>
       </div>
       <div className='w-full h-12'>
         <button
           className={`w-1/2 h-full rounded-t-20 rounded-b-none p2b ${shortestTimeClasses}`}
-          onClick={() => setActiveButton('shortestTime')}
+          onClick={() => setActiveButton("shortestTime")}
         >
           최단시간
         </button>
         <button
           className={`w-1/2 h-full rounded-t-20 rounded-b-none p2b ${minimumTransferClasses}`}
-          onClick={() => setActiveButton('minimumTransfer')}
+          onClick={() => setActiveButton("minimumTransfer")}
         >
           최소환승
         </button>
@@ -145,9 +152,9 @@ const RouteInfo = () => {
           return components;
         })}
       </div>
-      <div className='h-20'>
+      <Link to='/call' className='h-20'>
         <Button>호출하기</Button>
-      </div>
+      </Link>
     </div>
   );
 };
