@@ -8,7 +8,10 @@ import SelectPage from './pages/Main/PathSelectPage';
 import SelectStationPage from './pages/Main/StationSelectPage';
 import RouteInfo from './pages/Main/SelectRouteInfoPage';
 import StarPage from './pages/Star/StarPage';
+import CallPage from './pages/Call/CallPage';
 import NotFound from './pages/NotFoundPage';
+
+
 
 import './App.css';
 
@@ -27,6 +30,7 @@ function App() {
           <Route path='/departure' element={<SelectStationPage />} />
           <Route path='/routeinfo' element={<RouteInfo />} />
           <Route path='/star' element={<StarPage />} />
+          <Route path='/call' element={<CallPage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
