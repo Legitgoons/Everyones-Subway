@@ -32,8 +32,8 @@ const dummy = {
   transLine1: '4호선',
   transLine2: '',
   arrLine: '4호선',
-  fastTrans: '1-2',
-  fastExit: '1-3',
+  fastTrans: '빠른 환승 1-2', // 이거 환승인지 하차인지도 적어줘야 할듯?
+  fastExit: '빠른 하차 1-3',
 };
 
 const RouteInfo = () => {
@@ -55,25 +55,27 @@ const RouteInfo = () => {
     cost,
     transSt1,
     transTime1,
+    fastTrans,
+    fastExit,
   } = dummy;
 
   const routes = [
     { time: depTime, line: departLine, name: departStationName },
-    { time: transTime1, line: departLine, name: transSt1 },
+    { time: transTime1, line: departLine, name: transSt1, fast: fastTrans },
     { time: '환승', line: arriveLine, name: transSt1 },
-    { time: arrTime, line: arriveLine, name: arriveStationName },
+    { time: arrTime, line: arriveLine, name: arriveStationName, fast: fastExit },
   ];
 
   const RouteInfoLine = ({ line }) => {  // 얘 분리하니까 동작을 안함;
     return (
       <div
-        className={`${`bg-l${lineNameMap[line]}`} w-1 h-4 border border-8px border-solid`}
+        className={`${`bg-l${lineNameMap[line]}`} w-1 h-5 border border-8px border-solid`}
       />
     );
   };
 
   return (
-    <div className='flex flex-col items-center h-screen' style={{ height: "calc(100vh - 9.1vh)" }}>
+    <div className='flex flex-col items-center h-screen'>
       <Header pageName='이동 경로 정보' canBackward />
       <div className='flex justify-between items-center h-44 w-5/6'>
         <div className='flex flex-col justify-center items-center h-36 w-36 border border-solid border-g5 border-1 rounded-20'>
@@ -115,36 +117,37 @@ const RouteInfo = () => {
           // 현재 요소가 첫 번째 요소가 아니고, 현재 요소의 'line'이 이전 요소의 'line'과 같을 때
           if (index > 0 && route.line === routes[index - 1].line) {
             components.push(
-            <div className='flex'>
-              <div className='flex basis-2/5'>
-                <p className='basis-1/2'></p>
-                <div className='flex basis-1/2 pl-2'>
-                  <RouteInfoLine line={route.line}/>
+              <div className='flex'>
+                <div className='flex basis-2/5'>
+                  <p className='basis-1/2'></p>
+                  <div className='flex basis-1/2 pl-2'>
+                    <RouteInfoLine line={route.line} />
+                  </div>
                 </div>
               </div>
-            </div>
             );
           }
           if (index > 0 && route.line !== routes[index - 1].line) {
             components.push(
               <div className='flex'>
-              <div className='flex basis-2/5'>
-                <p className='basis-1/2'></p>
-                <div className='flex basis-1/2 pl-2'>
-                  <TranslineDots />
+                <div className='flex basis-2/5'>
+                  <p className='basis-1/2'></p>
+                  <div className='flex basis-1/2 pl-2'>
+                    <TranslineDots />
+                  </div>
                 </div>
               </div>
-            </div>
             );
           }
           // RouteIcons 컴포넌트도 추가로 출력
-          components.push(<RouteInfoIcons time={route.time} line={route.line} name={route.name} />);
-
+          components.push(<RouteInfoIcons time={route.time} line={route.line} name={route.name} fast={route.fast} />);
           // 컴포넌트 배열 반환
           return components;
         })}
       </div>
-      <Button>호출하기</Button>
+      <div className='h-20'>
+        <Button>호출하기</Button>
+      </div>
     </div>
   );
 };

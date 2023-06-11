@@ -14,7 +14,7 @@ import './App.css';
 
 function App() {
   const location = useLocation();
-  const showNavbar = location.pathname !== '/';
+  const showNavbar = location.pathname !== '/' && location.pathname !== '/routeinfo';
 
   return (
     <div className='App flex flex-col w-screen min-h-screen '>
