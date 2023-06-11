@@ -1,50 +1,56 @@
-import React, { useState } from 'react';
-import { ReactComponent as Sesac } from '../../assets/images/sesacIcon.svg'
-import { ReactComponent as TranslineDots } from '../../assets/images/translineDots.svg'
-import Button from '../common/Button';
-import Horizon from '../common/Horizon';
-import Header from '../Header/Header';
-import RouteInfoIcons from './RouteInfoIcons';
-import RouteInfoTimeButton from './RouteInfoTimeButton';
-import RouteInfoDetails from './RouteInfoDetails';
-import { lineNameMap } from '../../constant/lineNum';
-import { initStationState } from '../../store';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useState } from "react";
+import { ReactComponent as Sesac } from "../../assets/images/sesacIcon.svg";
+import { ReactComponent as TranslineDots } from "../../assets/images/translineDots.svg";
+import Button from "../common/Button";
+import Horizon from "../common/Horizon";
+import Header from "../Header/Header";
+import RouteInfoIcons from "./RouteInfoIcons";
+import RouteInfoTimeButton from "./RouteInfoTimeButton";
+import RouteInfoDetails from "./RouteInfoDetails";
+import { lineNameMap } from "../../constant/lineNum";
+import { initStationState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 const dummy = {
   travelTime: 24,
-  depTime: '17:00',
-  transTime1: '17:02', //이건 아직 안만듬
-  transTime2: '',
-  arrTime: '17:24',
+  depTime: "17:00",
+  transTime1: "17:02", //이건 아직 안만듬
+  transTime2: "",
+  arrTime: "17:24",
   stops: 6,
   transfer: 1,
   cost: 1250,
-  depSt: '시청',
-  transSt1: '서울역',
-  transSt2: '',
-  arrSt: '동작역',
+  depSt: "시청",
+  transSt1: "서울역",
+  transSt2: "",
+  arrSt: "동작역",
   stBtw1: 0,
   stBtw2: 0,
   stBtw3: 5,
-  depLine: '1호선',
-  transLine1: '4호선',
-  transLine2: '',
-  arrLine: '4호선',
-  fastTrans: '1-2',
-  fastExit: '1-3',
+  depLine: "1호선",
+  transLine1: "4호선",
+  transLine2: "",
+  arrLine: "4호선",
+  fastTrans: "1-2",
+  fastExit: "1-3",
 };
 
 const RouteInfo = () => {
   const [activeButton, setActiveButton] = useState("shortestTime");
-  const shortestTimeClasses = activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
-  const minimumTransferClasses = activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
+  const shortestTimeClasses =
+    activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
+  const minimumTransferClasses =
+    activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
 
-  const arriveLine = useSelector(state => state.path.arriveStation.line);
-  const departLine = useSelector(state => state.path.departureStation.line);
-  const arriveStationName = useSelector(state => state.path.arriveStation.name);
-  const departStationName = useSelector(state => state.path.departureStation.name);
+  const arriveLine = useSelector((state) => state.path.arriveStation.line);
+  const departLine = useSelector((state) => state.path.departureStation.line);
+  const arriveStationName = useSelector(
+    (state) => state.path.arriveStation.name
+  );
+  const departStationName = useSelector(
+    (state) => state.path.departureStation.name
+  );
 
   const {
     travelTime,
@@ -60,11 +66,12 @@ const RouteInfo = () => {
   const routes = [
     { time: depTime, line: departLine, name: departStationName },
     { time: transTime1, line: departLine, name: transSt1 },
-    { time: '환승', line: arriveLine, name: transSt1 },
+    { time: "환승", line: arriveLine, name: transSt1 },
     { time: arrTime, line: arriveLine, name: arriveStationName },
   ];
 
-  const RouteInfoLine = ({ line }) => {  // 얘 분리하니까 동작을 안함;
+  const RouteInfoLine = ({ line }) => {
+    // 얘 분리하니까 동작을 안함;
     return (
       <div
         className={`${`bg-l${lineNameMap[line]}`} w-1 h-4 border border-8px border-solid`}
@@ -73,7 +80,10 @@ const RouteInfo = () => {
   };
 
   return (
-    <div className='flex flex-col items-center h-screen' style={{ height: "calc(100vh - 9.1vh)" }}>
+    <div
+      className='flex flex-col items-center h-screen'
+      style={{ height: "calc(100vh - 9.1vh)" }}
+    >
       <Header pageName='이동 경로 정보' canBackward />
       <div className='flex justify-between items-center h-44 w-5/6'>
         <div className='flex flex-col justify-center items-center h-36 w-36 border border-solid border-g5 border-1 rounded-20'>
@@ -82,20 +92,20 @@ const RouteInfo = () => {
           <p className='h1b text-p1'>{travelTime}분</p>
         </div>
         <div className='flex flex-col justify-evenly items-center h-40 w-40'>
-          <RouteInfoTimeButton time={depTime} label="출발시간" />
-          <RouteInfoTimeButton time={arrTime} label="도착시간" />
+          <RouteInfoTimeButton time={depTime} label='출발시간' />
+          <RouteInfoTimeButton time={arrTime} label='도착시간' />
         </div>
       </div>
       <div className='w-full h-12'>
         <button
           className={`w-1/2 h-full rounded-t-20 rounded-b-none p2b ${shortestTimeClasses}`}
-          onClick={() => setActiveButton('shortestTime')}
+          onClick={() => setActiveButton("shortestTime")}
         >
           최단시간
         </button>
         <button
           className={`w-1/2 h-full rounded-t-20 rounded-b-none p2b ${minimumTransferClasses}`}
-          onClick={() => setActiveButton('minimumTransfer')}
+          onClick={() => setActiveButton("minimumTransfer")}
         >
           최소환승
         </button>
@@ -115,36 +125,44 @@ const RouteInfo = () => {
           // 현재 요소가 첫 번째 요소가 아니고, 현재 요소의 'line'이 이전 요소의 'line'과 같을 때
           if (index > 0 && route.line === routes[index - 1].line) {
             components.push(
-            <div className='flex'>
-              <div className='flex basis-2/5'>
-                <p className='basis-1/2'></p>
-                <div className='flex basis-1/2 pl-2'>
-                  <RouteInfoLine line={route.line}/>
+              <div className='flex'>
+                <div className='flex basis-2/5'>
+                  <p className='basis-1/2'></p>
+                  <div className='flex basis-1/2 pl-2'>
+                    <RouteInfoLine line={route.line} />
+                  </div>
                 </div>
               </div>
-            </div>
             );
           }
           if (index > 0 && route.line !== routes[index - 1].line) {
             components.push(
               <div className='flex'>
-              <div className='flex basis-2/5'>
-                <p className='basis-1/2'></p>
-                <div className='flex basis-1/2 pl-2'>
-                  <TranslineDots />
+                <div className='flex basis-2/5'>
+                  <p className='basis-1/2'></p>
+                  <div className='flex basis-1/2 pl-2'>
+                    <TranslineDots />
+                  </div>
                 </div>
               </div>
-            </div>
             );
           }
           // RouteIcons 컴포넌트도 추가로 출력
-          components.push(<RouteInfoIcons time={route.time} line={route.line} name={route.name} />);
+          components.push(
+            <RouteInfoIcons
+              time={route.time}
+              line={route.line}
+              name={route.name}
+            />
+          );
 
           // 컴포넌트 배열 반환
           return components;
         })}
       </div>
-      <Button>호출하기</Button>
+      <Link to='/call'>
+        <Button>호출하기</Button>
+      </Link>
     </div>
   );
 };
