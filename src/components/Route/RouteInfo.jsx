@@ -8,8 +8,7 @@ import RouteInfoIcons from "./RouteInfoIcons";
 import RouteInfoTimeButton from "./RouteInfoTimeButton";
 import RouteInfoDetails from "./RouteInfoDetails";
 import { lineNameMap } from "../../constant/lineNum";
-import { initStationState } from "../../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
 const dummy = {
@@ -117,10 +116,7 @@ const RouteInfo = () => {
       <Horizon />
       <div className='flex flex-col w-full flex-grow mt-4'>
         {routes.map((route, index) => {
-          // 배열을 담을 컴포넌트
           const components = [];
-
-          // 현재 요소가 첫 번째 요소가 아니고, 현재 요소의 'line'이 이전 요소의 'line'과 같을 때
           if (index > 0 && route.line === routes[index - 1].line) {
             components.push(
               <div className='flex'>
@@ -145,9 +141,7 @@ const RouteInfo = () => {
               </div>
             );
           }
-          // RouteIcons 컴포넌트도 추가로 출력
           components.push(<RouteInfoIcons time={route.time} line={route.line} name={route.name} fast={route.fast} />);
-          // 컴포넌트 배열 반환
           return components;
         })}
       </div>
