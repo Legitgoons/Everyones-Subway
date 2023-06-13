@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactComponent as SesacIcon } from '../../assets/images/sesacIcon.svg';
 
-const sesacText = ({ children }) => {
+const SesacText = ({ children }) => {
   return (
     <div className='flex'>
       <SesacIcon></SesacIcon>
@@ -10,4 +10,4 @@ const sesacText = ({ children }) => {
   );
 };
 
-export default sesacText;
+export default SesacText;

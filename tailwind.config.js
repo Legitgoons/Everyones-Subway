@@ -19,6 +19,8 @@ module.exports = {
         g6: '#f3f3f3',
         'g-white': '#ffffff',
 
+        warn: '#FFE038',
+
         l1: '#2B3B91',
         l2: '#61B257',
         l3: '#E0762D',

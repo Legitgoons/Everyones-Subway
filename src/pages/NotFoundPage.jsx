@@ -16,6 +16,8 @@ bg-l6
 bg-l7
 bg-l8
 bg-l9
+bg-warn
+bg-g5
 bg-l공
 bg-l중
 bg-l춘
