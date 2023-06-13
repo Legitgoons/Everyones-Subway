@@ -72,8 +72,7 @@ const RouteInfo = () => {
     { time: arrTime, line: arriveLine, name: arriveStationName, fast: fastExit },
   ];
 
-  const RouteInfoLine = ({ line }) => {
-    // 얘 분리하니까 동작을 안함;
+  const RouteInfoLine = ({ line }) => { // 얘 분리하니까 동작을 안함;
     return (
       <div
         className={`${`bg-l${lineNameMap[line]}`} w-1 h-5 border border-8px border-solid`}
