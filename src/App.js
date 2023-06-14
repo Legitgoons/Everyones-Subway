@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-
 import Navbar from './components/Navbar/Navbar';
 import SplashPage from './pages/Splash/SplashPage';
 import MainPage from './pages/Main/MainPage';
@@ -11,6 +10,7 @@ import StarPage from './pages/Star/StarPage';
 import CallPage from './pages/Call/CallPage';
 import AdminHomePage from './pages/Admin/AdminHomePage';
 import NotFound from './pages/NotFoundPage';
+import './firebase-messaging-sw.js';
 
 import './App.css';
 import CallDetailPage from './pages/Admin/CallDetailPage';
