@@ -45,6 +45,10 @@ const StationSelect = ({ departure }) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (arriveStation.name && departureStation.name) navigate('/routeinfo');
+  }, [arriveStation, departureStation]);
+
   const handleClickLine = (line) => () => {
     const action = departure ? setDepartureLine : setArriveLine;
     const resetAction = departure ? setDepartureStation : setArriveStation;
