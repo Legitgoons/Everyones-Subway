@@ -10,6 +10,7 @@ import RouteInfo from './pages/Main/SelectRouteInfoPage';
 import StarPage from './pages/Star/StarPage';
 import CallPage from './pages/Call/CallPage';
 import NotFound from './pages/NotFoundPage';
+import StationInfo from './components/Station/StationInfo';
 
 
 
@@ -31,7 +32,9 @@ function App() {
           <Route path='/routeinfo' element={<RouteInfo />} />
           <Route path='/star' element={<StarPage />} />
           <Route path='/call' element={<CallPage />} />
+          <Route path='/stationinfo' element={<StationInfo />} />
           <Route path='*' element={<NotFound />} />
+
         </Routes>
       </div>
       {showNavbar && <Navbar className='h-[9.1vh]' />}
