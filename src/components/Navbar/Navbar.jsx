@@ -21,7 +21,10 @@ const Navbar = () => {
   const handleHomeClick = () => navigate('/main');
   const handleStarClick = () => navigate('/star');
   const handleInfoClick = () => {};
-  const handleMyinfoClick = () => {};
+  //임시로 관리자페이지로 이동
+  const handleMyinfoClick = () => {
+    navigate('/admin');
+  };
 
   return (
     <div className='h-[9.1vh] justify-self-end w-screen flex items-center justify-around bg-white'>

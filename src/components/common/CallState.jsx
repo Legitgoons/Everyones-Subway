@@ -12,7 +12,9 @@ const CallState = ({ children }) => {
   }
 
   return (
-    <div className={`px-2 py-1 bg-${backgroundColor} rounded-full`}>
+    <div
+      className={`px-2 py-1 bg-${backgroundColor} rounded-full font-suit font-semibold text-16`}
+    >
       {children}
     </div>
   );

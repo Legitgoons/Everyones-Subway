@@ -8,7 +8,7 @@ const LineList = ({ lineNums, onClick }) => {
       {lineNums.map((num) => {
         return (
           <button
-            className='h-24 w-24 rounded-20 flex flex-col justify-center items-center border'
+            className='h-[28vw] w-[28vw] rounded-20 flex flex-col justify-center items-center border'
             onClick={onClick(num)}
           >
             <div className='font-suit font-semibold text-18'>{num}</div>

@@ -14,6 +14,7 @@ import './firebase-messaging-sw.js';
 
 import './App.css';
 import CallDetailPage from './pages/Admin/CallDetailPage';
+import CallHistoryPage from './pages/Admin/CallHistoryPage';
 
 function App() {
   const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
           <Route path='/call' element={<CallPage />} />
           <Route path='/call/:id' element={<CallDetailPage />} />
           <Route path='/admin' element={<AdminHomePage />} />
+          <Route path='/admin/history' element={<CallHistoryPage />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
