@@ -79,6 +79,10 @@ module.exports = {
       height: {
         100: '400px',
       },
+      boxShadow: {
+        button: '0px -4px 12px rgba(233, 233, 233, 0.25)',
+        dropTop: '0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)',
+      }
     },
   },
   plugins: [],
