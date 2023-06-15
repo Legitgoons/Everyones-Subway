@@ -1,95 +1,50 @@
-import React, { useState } from "react";
-
-import { ReactComponent as Cone } from "../../assets/images/cone.svg";
-import Horizon from "../common/Horizon";
-import Header from "../Header/Header";
-import RouteInfoDetails from "../Route/RouteInfoDetails";
-import { lineNameMap } from "../../constant/lineNum";
-import { useSelector } from "react-redux";
-import StationTime from "./StationTime";
+import React from 'react';
+import LineIcon from './LineIcon';
+import { ReactComponent as Cone } from '../../assets/images/cone.svg';
+import Horizon from '../common/Horizon';
+import Header from '../Header/Header';
+import RouteInfoDetails from '../Route/RouteInfoDetails';
+import { lineNameMap } from '../../constant/lineNum';
+import StationTime from './StationTime';
+import { useParams } from 'react-router-dom';
 
 const dummy = {
-  travelTime: 24,
-  depTime: "17:00",
-  transTime1: "17:02", //이건 아직 안만듬
-  transTime2: "",
-  arrTime: "17:24",
-  stops: 6,
-  transfer: 1,
-  cost: 1250,
-  depSt: "시청",
-  transSt1: "서울역",
-  transSt2: "",
-  arrSt: "동작역",
-  stBtw1: 0,
-  stBtw2: 0,
-  stBtw3: 5,
-  depLine: "1호선",
-  transLine1: "4호선",
-  transLine2: "",
-  arrLine: "4호선",
-  fastTrans: "빠른 환승 1-2", // 이거 환승인지 하차인지도 적어줘야 할듯?
-  fastExit: "빠른 하차 1-3",
+  beforeStation: '종각역',
+  nextStation: '서울역',
+  caution1: '종각 방면 | 2번출구 근처',
+  caution2: '서울역 방면 | 3번출구 근처',
+  elevator: '서울역 방면 | 2번출구 근처',
 };
 
 const StationInfo = () => {
-  const [activeButton, setActiveButton] = useState("shortestTime");
-  const shortestTimeClasses =
-    activeButton === "shortestTime" ? "bg-p1 text-white" : "bg-g6 text-g4";
-  const minimumTransferClasses =
-    activeButton === "minimumTransfer" ? "bg-p1 text-white" : "bg-g6 text-g4";
-
-  const arriveLine = useSelector((state) => state.path.arriveStation.line);
-  const departLine = useSelector((state) => state.path.departureStation.line);
-  const arriveStationName = useSelector(
-    (state) => state.path.arriveStation.name
-  );
-  const departStationName = useSelector(
-    (state) => state.path.departureStation.name
-  );
+  const { line, name } = useParams();
 
   const {
-    travelTime,
-    depTime,
-    arrTime,
-    stops,
-    transfer,
-    cost,
-    transSt1,
-    transTime1,
-    fastTrans,
-    fastExit,
+    beforeStation,
+    nextStation,
+    caution1,
+    caution2,
+    elevator,
   } = dummy;
 
-  const routes = [
-    { time: depTime, line: departLine, name: departStationName },
-    { time: transTime1, line: departLine, name: transSt1, fast: fastTrans },
-    { time: "환승", line: arriveLine, name: transSt1 },
-    {
-      time: arrTime,
-      line: arriveLine,
-      name: arriveStationName,
-      fast: fastExit,
-    },
-  ];
-
-  const StationInfo = ({ line }) => {
-    // 얘 분리하니까 동작을 안함;
+  const StationInfoLine = ({ line }) => {
     return (
       <div
-        className={`${`bg-l${lineNameMap[line]}`} w-1 h-5 border border-8px border-solid`}
+        className={`${`bg-l${lineNameMap[line]}`} w-10 h-2`}
       />
     );
   };
 
   return (
-    <div className='flex flex-col items-center h-screen'>
-      <Header pageName='시청역 정보' canBackward />
-      <div className='h-8'></div>
-
-      {/* <- 시청역 -> */}
-      <div className='h-12'></div>
-      <div className='h-1'></div>
+    <div className='flex flex-col items-center h-screen w-screen'>
+      <Header pageName={`${name} 정보`} canBackward />
+      <div className='flex w-full h-20 justify-center items-center'>
+        <div className='flex justify-center items-center border rounded-4xl p3b h-9 w-1/5'>&lt; {beforeStation}</div>
+        <StationInfoLine line={`${line}`} />
+        <div className={`${`bg-l${lineNameMap[line]}`} flex justify-center items-center w-1/4 h-14 h3b text-white rounded-4xl`}>시청역</div>
+        <StationInfoLine line={`${line}`} />
+        <div className='flex justify-center items-center border rounded-4xl p3b h-9 w-1/5'>{nextStation} &gt;</div>
+      </div>
 
       {/* 3개 라벨 */}
       <div className='flex h-16 w-screen justify-center items-center'>
@@ -128,40 +83,59 @@ const StationInfo = () => {
       <div
         id='회색박스'
         className='flex-col h-32 w-80 rounded-20 '
-        style={{ background: "#F9F9F9" }}
+        style={{ background: '#F9F9F9' }}
       >
-        <div className='h-4'></div>
-        <div className='flex justify-center'>
-          <Cone></Cone>
-          <div className='w-1'></div>
-          <p
-            className='text-14 font-suit font-semibold'
-            style={{ color: "#FF3D00" }}
-          >
-            보수중! 우회해주세요
-          </p>
-          <div className='w-1'></div>
-          <Cone></Cone>
+        <div className='flex flex-col h-full items-start justify-evenly ml-16 p2b'>
+          <div className='flex justify-center h-1/5'>
+            <Cone />
+            <p
+              className='text-14 font-suit font-semibold mx-1'
+              style={{ color: '#FF3D00' }}
+            >
+              보수중! 우회해주세요
+            </p>
+            <Cone />
+          </div>
+          <div className='flex'>
+            <LineIcon line={`${lineNameMap[line]}`} />
+            <p className='mx-1'>{caution1}</p>
+          </div>
+          <div className='flex'>
+            <LineIcon line={`${lineNameMap[line]}`} />
+            <p className='mx-1'>{caution2}</p>
+          </div>
         </div>
-        <div className='h-4'></div>
       </div>
       {/* 회색박스 */}
-      <div className='h-4'></div>
-      <div className='flex flex-start w-screen'>
-        <div className='w-5'></div>
-        <p
-          className='text-18 font-suit font-semibold'
-        >엘레베이터 정보</p>
+      <div className='flex flex-col w-5/6 h-28 justify-evenly'>
+        <div className='flex flex-start w-screen'>
+          <p
+            className='text-18 font-suit font-semibold'
+          >엘레베이터 정보</p>
+        </div>
+        <div className='flex w-full'>
+          <LineIcon line={`${lineNameMap[line]}`} />
+          <p className='p2r mx-1'>{elevator}</p>
+        </div>
+        <div />
       </div>
       <Horizon />
       <div className='h-4'></div>
-      <div className='flex flex-start w-screen'>
-        <div className='w-5'></div>
-
-        <p className='text-18 font-suit font-semibold'>엘레베이터 가까운 탑승칸</p>
+      <div className='flex flex-col flex-grow w-full'>
+        <p className='flex items-center w-1/2 h-1/5 xt-18 font-suit font-semibold ml-3'>엘레베이터 가까운 탑승칸</p>
+        <div className='flex items-center w-1/2 h-1/5'>
+          <div className='flex justify-center items-center border rounded-4xl p3b h-9 w-1/2 mx-3'>{beforeStation} 방면</div>
+          <p className='p1b'>3-2</p>
+        </div>
+        <div className='flex items-center w-1/2 h-1/5'>
+          <div className='flex justify-center items-center border rounded-4xl p3b h-9 w-1/2 mx-3'>{nextStation} 방면</div>
+          <p className='p1b'>8-3</p>
+        </div>
+        <div></div>
       </div>
-
     </div>
+
+
   );
 };
 
