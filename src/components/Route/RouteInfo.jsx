@@ -137,6 +137,34 @@ const RouteInfo = () => {
     );
   };
 
+  const DropdownMenu = ({ dropdownOpen }) => {
+    return (
+      <React.Fragment>
+        {dropdownOpen && (
+          <div
+            className='fixed inset-0 z-10'
+            onClick={() => setDropdownOpen(false)}
+          />
+        )}
+        {dropdownOpen && (
+          <ul className='w-full dropdown-menu absolute bottom-full mb-2 p1b text-black'>
+            {routes.map((route, index) => (
+              <li className='h-[8vh] flex items-center justify-center' key={index}>
+                <Link
+                  to=''
+                  className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'
+                >
+                  <LineIcon line={lineNameMap[route.line]} className='mr-1' />
+                  {route.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </React.Fragment>
+    );
+  };
+
   const RouteInfoLineIcon = ({ line }) => {
     return (
       <div className='relative flex items-center justify-center '>
@@ -248,38 +276,8 @@ const RouteInfo = () => {
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
           역 정보
-          {dropdownOpen && (
-            <ul className='w-full dropdown-menu absolute bottom-full mb-2 p1b text-black'>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link
-                  to=''
-                  className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'
-                >
-                  <LineIcon line={lineNameMap[departLine]} className='mr-1' />
-                  {departStationName}
-                </Link>
-              </li>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link
-                  to=''
-                  className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'
-                >
-                  <LineIcon line={lineNameMap[departLine]} />
-                  <LineIcon line={lineNameMap[arriveLine]} className='mx-1' />
-                  {transSt1}
-                </Link>
-              </li>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link
-                  to=''
-                  className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'
-                >
-                  <LineIcon line={lineNameMap[arriveLine]} className='mr-1' />
-                  {arriveStationName}
-                </Link>
-              </li>
-            </ul>
-          )}
+          <DropdownMenu dropdownOpen={dropdownOpen} />
+
         </div>
         <Link
           to='/call'
