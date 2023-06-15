@@ -13,7 +13,7 @@ const CallCompletePage = () => {
 
       <div className='flex-grow flex'>
         <div className='h-[9.1vh] self-end w-screen justify-around shadow-button font-suit font-semibold'>
-          <Link to='/call' className='flex justify-center items-center w-full h-full text-white bg-p1'>
+          <Link to='/main' className='flex justify-center items-center w-full h-full text-white bg-p1'>
             확인
           </Link>
         </div>
