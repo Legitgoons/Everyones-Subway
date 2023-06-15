@@ -27,7 +27,42 @@ import { Link } from "react-router-dom";
 import Button from "../../components/common/Button";
 import { useDispatch, useSelector } from "react-redux";
 
+const Modal = ({ isOpen, onClose }) => {
+  if (!isOpen) {
+    return null;
+  }
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-500">
+      <div className="bg-white rounded-lg p-8">
+        <h2 className="text-lg font-bold font-suit mb-4">호출 전송하시겠습니까?</h2>
+        <div className="flex justify-center">
+          <Link  className="bg-p1 text-white font-bold py-2 px-4 rounded-20">
+            확인
+          </Link>
+          <div className="w-2"></div>
+          <button className="border border-g4 bg-white text-g4 font-bold py-2 px-4 rounded-20" onClick={onClose}>
+            취소
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const CallPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    console.log(isModalOpen); // 현재 값 확인
+
+    setIsModalOpen((prevState) => !prevState); // 이전 상태의 반대로 설정
+  };
+
+  const closeModal = () => {
+    console.log(isModalOpen); // 현재 값 확인
+
+    setIsModalOpen(false); // 항상 false로 설정
+  };
   const [wheelChair, setWheelChair] = useState(false);
   const [walkingDifficulty, setWalkingDifficulty] = useState(false);
   const [etc, setEtc] = useState(false);
@@ -67,9 +102,12 @@ const CallPage = () => {
   };
 
   return (
-    <div className='w-360 h-screen flex flex-col items-center justify-end'>
+    <div
+      style={{ width: "360px", height: "800px" }}
+      className='flex flex-col items-center justify-end'
+    >
       <Header pageName='역무원 호출하기' canBackward />
-      <div className='h-6'></div>
+      <div className='h-4'></div>
       <div className='flex flex-col  h-full text-left'>
         <div className='flex w-full'>
           <div className='w-5 '></div>
@@ -80,7 +118,7 @@ const CallPage = () => {
             출발역
           </div>
           <div className='w-11'></div>
-          <div className='w-60 border rounded-3xl  p-2 text-16 font-semibold py-2 px-4'>
+          <div className='w-60 border rounded-3xl bg-g6 p-2 text-16 font-semibold py-2 px-4'>
             {depSt}
           </div>
           <div className='w-5'></div>
@@ -97,13 +135,11 @@ const CallPage = () => {
             출발시간
           </div>
           <div className='w-7'></div>
-          <div className='w-60 border rounded-3xl  p-2 text-16 font-semibold py-2 px-4'>
+          <div className='w-60 border rounded-3xl bg-g6 p-2 text-16 font-semibold py-2 px-4'>
             {depTime}
           </div>
           <div className='w-5'></div>
         </div>
-
-        
 
         <div className='h-2'></div>
 
@@ -331,12 +367,24 @@ const CallPage = () => {
           {/* 여기까지 어디에 호출할까요? */}
         </div>
         {/* 현재상태 ~ 어디에 호출할까요? */}
-      <div className='h-10'> </div>
+        <div className='h-10'> </div>
       </div>
-      <Link>
-        <Button>호출전송</Button>
-      </Link>
-      <div className='h-5'></div>
+      <div>
+        <div
+          className='h-16'
+          style={{ position: "fixed", bottom: "0", left: "0", width: "100%" }}
+        >
+          <Link
+            className='flex justify-center items-center w-full h-16 text-white bg-p1 p1b'
+            onClick={openModal}
+          >
+            호출전송
+          </Link>
+        </div>
+
+        {/* 모달 컴포넌트 */}
+        <Modal isOpen={isModalOpen} onClose={closeModal} />
+      </div>
 
       {/* 헤더 ~ 도움이 필요해요 */}
     </div>
