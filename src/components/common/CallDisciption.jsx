@@ -12,6 +12,8 @@ const callInfo = {
   departureTime: new Date(),
   trainLocation: '5-4',
   requestDesc: ['휠체어 탑승', '환승구간 동행요청'],
+  departHour: '17',
+  departMinute: '00',
 };
 var weekday = ['일', '월', '화', '수', '목', '금', '토'];
 const CallDisciption = () => {
@@ -20,11 +22,9 @@ const CallDisciption = () => {
       <div className='flex items-center'>
         <div className='w-4/5 text-left font-suit font-semibold'>
           <div>
-            {`${
-              callInfo.departureTime.getMonth() + 1
-            }/${callInfo.departureTime.getDate()}(${
-              weekday[callInfo.departureTime.getDay()]
-            })`}
+            {`${callInfo.departureTime.getMonth() + 1
+              }/${callInfo.departureTime.getDate()}(${weekday[callInfo.departureTime.getDay()]
+              })`}
           </div>
           <div className='w-4/5 text-left font-suit font-semibold'>{`민원요청시간 | ${callInfo.callTime.getHours()}:${callInfo.callTime.getMinutes()}`}</div>
         </div>
@@ -49,7 +49,7 @@ const CallDisciption = () => {
       <CallLabel label={`도착역`}>{callInfo.arriveStation}</CallLabel>
       <div className='h-2'></div>
       <CallLabel label={`출발시간`}>
-        {`${callInfo.departureTime.getHours()}:${callInfo.departureTime.getMinutes()}`}
+        {callInfo.departHour}:{callInfo.departMinute}
       </CallLabel>
       <div className='h-2'></div>
       <CallLabel label={`탑승번호`}>{callInfo.trainLocation}</CallLabel>
