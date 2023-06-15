@@ -14,28 +14,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
-async function requestPermission() {
-  console.log("권한 요청 중...");
+onMessage(messaging, (payload) => {
+  console.log("Message received. ", payload);
 
-  const permission = await Notification.requestPermission();
-  if (permission === "denied") {
-    console.log("알림 권한 허용 안됨");
-    return;
+  // Assuming your server sends notification data in payload.data
+  const notificationTitle = payload.data.title;
+  const notificationOptions = {
+    body: payload.data.body,
+    icon: '/firebase-logo.png'  // Optional: include a custom icon
+  };
+
+  if (!("Notification" in window)) {
+    console.log("This browser does not support system notifications");
   }
+  else if (Notification.permission === "granted") {
+    new Notification(notificationTitle, notificationOptions);
+  }
+});
 
-  console.log("알림 권한이 허용됨");
-
-  const token = await getToken(messaging, {
-    vapidKey: 'BOOptFU_7EENDgAqTIldQhqFrxh_g0FR_I8Kt6O0dAO6s67l_gD1mEGLLrz_TtDpM8W84wrMtcp4N_ikR_b8sBM',
-  });
-
-  if (token) console.log("token: ", token);
-  else console.log("Can not get Token");
-
-  onMessage(messaging, (payload) => {
-    console.log("메시지가 도착했습니다.", payload);
-    // ...
-  });
-}
-
-requestPermission();
+export const requestPermission = async () => {
+  const permission = await Notification.requestPermission();
+  if (permission === "granted") {
+    console.log("Notification permission granted.");
+  }
+  else {
+    console.log("Notification permission denied.");
+  }
+};
