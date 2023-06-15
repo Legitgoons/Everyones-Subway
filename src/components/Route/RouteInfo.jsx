@@ -12,21 +12,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const dummy = {
-  travelTime: 46,
-  depTime1: '17:00',
-  arrTime1: '17:02', // new
-  depTime2: '17:24',
-  arrTime2: '17:46',
-  depTime3: '',
-  arrTime3: '',
-  transTime: 16, // new
-  travelTime1: 2,  //  new
-  travelTime2: 15,
-  travelTime3: '',
-  transInfo1: '1-3칸 앞 엘레베이터 탑승', // new
-  transInfo2: '지상 2층 대합실 이동',
-  transInfo3: '4호선 대합실 우측 엘레베이터 이용',
-  arrTime: '17:24',
+  travelTime: 24,
+  depTime: "17:00",
+  transTime1: "17:02", //이건 아직 안만듬
+  transTime2: "",
+  arrTime: "17:24",
   stops: 6,
   transfer: 1,
   // cost: 1250,
@@ -64,24 +54,6 @@ const RouteInfo = () => {
     (state) => state.path.departureStation.name
   );
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-    }
-
-    // 클릭 리스너를 부착합니다.
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // 클릭 리스너를 제거합니다.
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dropdownRef]);
-
   const {
     travelTime,
     depTime1,
@@ -107,34 +79,17 @@ const RouteInfo = () => {
   } = dummy;
 
   const routes = [
-    { time: depTime1, line: departLine, name: departStationName, stBtw: stBtw1 },
-    { time: arrTime1, line: departLine, name: transSt1, fast: fastTrans, travelTime: travelTime1 },
-    { time: depTime2, line: arriveLine, name: transSt1, stBtw: stBtw2 },
-    { time: arrTime2, line: arriveLine, name: arriveStationName, fast: fastExit, travelTime: travelTime2 },
+    { time: depTime, line: departLine, name: departStationName },
+    { time: transTime1, line: departLine, name: transSt1, fast: fastTrans },
+    { time: '환승', line: arriveLine, name: transSt1 },
+    { time: arrTime, line: arriveLine, name: arriveStationName, fast: fastExit },
   ];
-  const RouteInfoLine = ({ line, children }) => {
+
+  const RouteInfoLine = ({ line }) => { // 얘 분리하니까 동작을 안함;
     return (
       <div
-        className={`${`bg-l${lineNameMap[line]}`} w-1 h-3 border-8px`}
-      >
-        {children}
-      </div>
-    );
-  };
-  
-  const RouteInfoLineIcon = ({ line }) => {
-    return (
-      <div className='relative flex items-center justify-center'>
-        <div
-          className={`${`bg-l${lineNameMap[line]}`} w-1 h-4 border-8px`}
-        >
-        </div>
-        <div
-          className={`absolute top-1/2 transform -translate-y-1/2 flex justify-center items-center w-4 h-4 rounded-full ${`bg-l${lineNameMap[line]}`}`}
-        >
-          <div className={`w-2 h-2 rounded-full bg-white`} />
-        </div>
-      </div>
+        className={`${`bg-l${lineNameMap[line]}`} w-1 h-5 border border-8px border-solid`}
+      />
     );
   };
 
@@ -175,17 +130,19 @@ const RouteInfo = () => {
         <RouteInfoDetails label='경사로' value={`${runway}회`} />
       </div>
       <Horizon />
-      <div className='flex flex-col w-full flex-grow mt-4'>
+      <div className='flex flex-col w-full h-[50vh] overflow-scroll mt-4'>
         {routes.map((route, index) => {
           const components = [];
           if (index > 0 && route.line === routes[index - 1].line) {
+            const arr = [];
+            for (let i = 0; i < routes[index - 1].stBtw; i++) {
+              arr.push(<RouteInfoLineIcon line={route.line} />);
+            }
             components.push(
               <div className='flex'>
                 <div className='flex basis-2/5'>
-                  <p className='basis-1/2 p3r'>{route.travelTime}분</p>
-                  <div className='flex flex-col items-start basis-1/2 pl-2'>
-                    <RouteInfoLine line={route.line} />
-                      <RouteInfoLineIcon line={route.line}/>
+                  <p className='basis-1/2'></p>
+                  <div className='flex basis-1/2 pl-2'>
                     <RouteInfoLine line={route.line} />
                   </div>
                 </div>
@@ -193,47 +150,31 @@ const RouteInfo = () => {
             );
           }
           if (index > 0 && route.line !== routes[index - 1].line) {
-            components.push(<RouteInfoTransline time={transTime} info1={transInfo1} info2={transInfo2} info3={transInfo3} />);
+            components.push(
+              <div className='flex'>
+                <div className='flex basis-2/5'>
+                  <p className='basis-1/2'></p>
+                  <div className='flex basis-1/2 pl-2'>
+                    <TranslineDots />
+                  </div>
+                </div>
+              </div>
+            );
           }
-          components.push(<RouteInfoIcons time={route.time} line={route.line} name={route.name} fast={route.fast} />);
+          components.push(
+            <RouteInfoIcons
+              time={route.time}
+              line={route.line}
+              name={route.name}
+              fast={route.fast}
+            />
+          );
           return components;
         })}
       </div>
-      {dropdownOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-10" onClick={() => setDropdownOpen(false)} />}
-      <button className='flex w-screen h-[8vh] shadow-button z-20' ref={dropdownRef}>
-        <div
-          className='flex justify-center items-center w-1/2 h-full text-p1 p1b relative'
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-        >
-          역 정보
-          {dropdownOpen && (
-            <ul className='w-full dropdown-menu absolute bottom-full mb-2 p1b text-black'>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link to='' className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'>
-                  <LineIcon line={lineNameMap[departLine]} className='mr-1' />
-                  {departStationName}
-                </Link>
-              </li>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link to='' className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'>
-                  <LineIcon line={lineNameMap[departLine]} />
-                  <LineIcon line={lineNameMap[arriveLine]} className='mx-1' />
-                  {transSt1}
-                </Link>
-              </li>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link to='' className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'>
-                  <LineIcon line={lineNameMap[arriveLine]} className='mr-1' />
-                  {arriveStationName}
-                </Link>
-              </li>
-            </ul>
-          )}
-        </div>
-        <Link to='/call' className='flex justify-center items-center w-1/2 h-full text-white bg-p1 p1b'>
-          호출하기
-        </Link>
-      </button>
+      <Link to='/call' className='h-20'>
+        <Button>호출하기</Button>
+      </Link>
     </div>
   );
 };
