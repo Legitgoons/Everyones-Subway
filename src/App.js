@@ -22,7 +22,7 @@ function App() {
   const showNavbar =
     location.pathname !== '/' &&
     location.pathname !== '/routeinfo' &&
-    location.pathname !== '/call';
+    !location.pathname.includes('/call');
 
   return (
     <div className='App flex flex-col w-screen min-h-screen'>
@@ -41,7 +41,6 @@ function App() {
           <Route path='/admin' element={<AdminHomePage />} />
           <Route path='/admin/history' element={<CallHistoryPage />} />
           <Route path='*' element={<NotFound />} />
-
         </Routes>
       </div>
       {showNavbar && <Navbar className='h-[9.1vh]' />}
