@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 
 import { ReactComponent as Cone } from "../../assets/images/cone.svg";
-
-import Button from "../common/Button";
 import Horizon from "../common/Horizon";
 import Header from "../Header/Header";
-import RouteInfoIcons from "../Route/RouteInfoIcons";
-import RouteInfoTimeButton from "../Route/RouteInfoTimeButton";
 import RouteInfoDetails from "../Route/RouteInfoDetails";
 import { lineNameMap } from "../../constant/lineNum";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import StationTime from "./StationTime";
 
 const dummy = {
@@ -153,22 +148,19 @@ const StationInfo = () => {
       {/* 회색박스 */}
       <div className='h-4'></div>
       <div className='flex flex-start w-screen'>
-      <div className='w-5'></div>
+        <div className='w-5'></div>
         <p
-            className='text-18 font-suit font-semibold'
-          >엘레베이터 정보</p>
+          className='text-18 font-suit font-semibold'
+        >엘레베이터 정보</p>
       </div>
       <Horizon />
       <div className='h-4'></div>
       <div className='flex flex-start w-screen'>
-      <div className='w-5'></div>
+        <div className='w-5'></div>
 
-        <p
-            className='text-18 font-suit font-semibold'
-            
-          >엘레베이터 가까운 탑승칸</p>
+        <p className='text-18 font-suit font-semibold'>엘레베이터 가까운 탑승칸</p>
       </div>
-      
+
     </div>
   );
 };

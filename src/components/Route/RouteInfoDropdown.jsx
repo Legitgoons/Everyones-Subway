@@ -16,7 +16,10 @@ const RouteInfoDropdown = ({dropdownOpen, setDropdownOpen, routes, lineNameMap})
         {routes.map((route, index) => (
           <li className='h-[8vh] flex items-center justify-center' key={index}>
             <Link
-              to=''
+              to={{
+                pathname: '/stationinfo',
+                state: { line: route.line, name: route.name }
+              }}
               className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'
             >
               <LineIcon line={lineNameMap[route.line]} className='mr-1' />
