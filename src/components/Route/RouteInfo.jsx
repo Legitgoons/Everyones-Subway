@@ -6,7 +6,7 @@ import RouteInfoIcons from './RouteInfoIcons';
 import RouteInfoTimeButton from './RouteInfoTimeButton';
 import RouteInfoDetails from './RouteInfoDetails';
 import RouteInfoTransline from './RouteInfoTransline';
-import LineIcon from '../Station/LineIcon';
+import RouteInfoDropdown from './RouteInfoDropdown';
 import { lineNameMap } from '../../constant/lineNum';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -248,38 +248,7 @@ const RouteInfo = () => {
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
           역 정보
-          {dropdownOpen && (
-            <ul className='w-full dropdown-menu absolute bottom-full mb-2 p1b text-black'>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link
-                  to=''
-                  className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'
-                >
-                  <LineIcon line={lineNameMap[departLine]} className='mr-1' />
-                  {departStationName}
-                </Link>
-              </li>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link
-                  to=''
-                  className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'
-                >
-                  <LineIcon line={lineNameMap[departLine]} />
-                  <LineIcon line={lineNameMap[arriveLine]} className='mx-1' />
-                  {transSt1}
-                </Link>
-              </li>
-              <li className='h-[8vh] flex items-center justify-center'>
-                <Link
-                  to=''
-                  className='flex justify-center items-center w-4/5 h-5/6 bg-white shadow-dropTop rounded-25'
-                >
-                  <LineIcon line={lineNameMap[arriveLine]} className='mr-1' />
-                  {arriveStationName}
-                </Link>
-              </li>
-            </ul>
-          )}
+          <RouteInfoDropdown dropdownOpen={dropdownOpen} setDropdownOpen={setDropdownOpen} routes={routes} lineNameMap={lineNameMap} />
         </div>
         <Link
           to='/call'
