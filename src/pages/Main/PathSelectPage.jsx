@@ -30,10 +30,6 @@ const SelectPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (arriveStation.name && departureStation.name) navigate('/routeinfo');
-  }, [arriveStation, departureStation]);
-
   const handleDepatureClick = () => {
     dispatch(initDeparturestate());
     navigate('/departure');
