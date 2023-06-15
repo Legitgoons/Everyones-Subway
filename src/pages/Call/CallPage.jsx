@@ -27,21 +27,28 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const displayNotification = (title, body) => {
-  if (!('Notification' in window)) {
-    console.error('이 브라우저는 알림을 지원하지 않습니다.');
-    return;
-  }
+  return new Promise((resolve, reject) => {
+    if (!('Notification' in window)) {
+      console.error('이 브라우저는 알림을 지원하지 않습니다.');
+      reject('이 브라우저는 알림을 지원하지 않습니다.');
+      return;
+    }
 
-  if (Notification.permission === 'granted') {
-    new Notification(title, { body });
-  } else {
-    Notification.requestPermission()
-      .then((permission) => {
-        if (permission === 'granted') {
-          new Notification(title, { body });
-        }
-      });
-  }
+    if (Notification.permission === 'granted') {
+      new Notification(title, { body });
+      resolve();
+    } else {
+      Notification.requestPermission()
+        .then((permission) => {
+          if (permission === 'granted') {
+            new Notification(title, { body });
+            resolve();
+          } else {
+            reject('알림 권한이 거부되었습니다.');
+          }
+        });
+    }
+  });
 };
 
 const Modal = ({ isOpen, onClose, wheelChair, walkingDifficulty, etc, trainHelp, liftHelp, safetyPlat }) => {
@@ -74,10 +81,11 @@ const Modal = ({ isOpen, onClose, wheelChair, walkingDifficulty, etc, trainHelp,
     if (safetyPlat) {
       body.push("안전 발판");
     }
-
-    displayNotification(title.join(', '), `${depTime} ${depSt}역 출발 ${seatNo}, ${body.join(', ')}`);
-    navigate('/result');
+    // Navigate is now in the promise chain
+    displayNotification(title.join(', '), `${depTime} ${depSt}역 출발 ${seatNo}, ${body.join(', ')}`)
+      .then(() => navigate('/result'));
   };
+
   if (!isOpen) {
     return null;
   }
