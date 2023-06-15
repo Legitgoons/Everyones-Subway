@@ -24,10 +24,60 @@ import { ReactComponent as ColoredWheelChair } from "../../assets/images/Call/co
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/common/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const Modal = ({ isOpen, onClose }) => {
+const displayNotification = (title, body) => {
+  if (!('Notification' in window)) {
+    console.error('이 브라우저는 알림을 지원하지 않습니다.');
+    return;
+  }
+
+  if (Notification.permission === 'granted') {
+    new Notification(title, { body });
+  } else {
+    Notification.requestPermission()
+      .then((permission) => {
+        if (permission === 'granted') {
+          new Notification(title, { body });
+        }
+      });
+  }
+};
+
+const Modal = ({ isOpen, onClose, wheelChair, walkingDifficulty, etc, trainHelp, liftHelp, safetyPlat }) => {
+  const depSt = "시청";
+  const depTime = "17:00";
+  const trainNo = "7042";
+  const seatNo = "5-4";
+
+  const navigate = useNavigate();
+
+  const handleConfirm = () => {
+    let title = [];
+    let body = [];
+
+    if (wheelChair) {
+      title.push("휠체어 탑승");
+    }
+    if (walkingDifficulty) {
+      title.push("거동 불편");
+    }
+    if (etc) {
+      title.push("기타 민원");
+    }
+    if (trainHelp) {
+      body.push("열차 탑승");
+    }
+    if (liftHelp) {
+      body.push("리프트 이용");
+    }
+    if (safetyPlat) {
+      body.push("안전 발판");
+    }
+
+    displayNotification(title.join(', '), `${depTime} ${depSt}역 출발 ${seatNo}, ${body.join(', ')}`);
+    navigate('/result');
+  };
   if (!isOpen) {
     return null;
   }
@@ -37,9 +87,9 @@ const Modal = ({ isOpen, onClose }) => {
       <div className="bg-white rounded-lg p-8">
         <h2 className="text-lg font-bold font-suit mb-4">호출 전송하시겠습니까?</h2>
         <div className="flex justify-center">
-          <Link to='/result' className="bg-p1 text-white font-bold py-2 px-4 rounded-20">
+          <button onClick={handleConfirm} className="bg-p1 text-white font-bold py-2 px-4 rounded-20">
             확인
-          </Link>
+          </button>
           <div className="w-2"></div>
           <button className="border border-g4 bg-white text-g4 font-bold py-2 px-4 rounded-20" onClick={onClose}>
             취소
@@ -53,14 +103,10 @@ const Modal = ({ isOpen, onClose }) => {
 const CallPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
-    console.log(isModalOpen); // 현재 값 확인
-
     setIsModalOpen((prevState) => !prevState); // 이전 상태의 반대로 설정
   };
 
   const closeModal = () => {
-    console.log(isModalOpen); // 현재 값 확인
-
     setIsModalOpen(false); // 항상 false로 설정
   };
   const [wheelChair, setWheelChair] = useState(false);
@@ -383,7 +429,16 @@ const CallPage = () => {
         </div>
 
         {/* 모달 컴포넌트 */}
-        <Modal isOpen={isModalOpen} onClose={closeModal} />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          wheelChair={wheelChair}
+          walkingDifficulty={walkingDifficulty}
+          etc={etc}
+          trainHelp={trainHelp}
+          liftHelp={liftHelp}
+          safetyPlat={safetyPlat}
+        />
       </div>
 
       {/* 헤더 ~ 도움이 필요해요 */}
