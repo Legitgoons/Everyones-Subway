@@ -16,14 +16,15 @@ import './firebase-messaging-sw.js';
 import './App.css';
 import CallDetailPage from './pages/Admin/CallDetailPage';
 import CallHistoryPage from './pages/Admin/CallHistoryPage';
+import CallCompletePage from './pages/Call/CallCompletePage';
 
 function App() {
   const location = useLocation();
   const showNavbar =
     location.pathname !== '/' &&
     location.pathname !== '/routeinfo' &&
-    location.pathname !== '/call';
-
+    location.pathname !== '/result' &&
+    !location.pathname.includes('/call');
   return (
     <div className='App flex flex-col w-screen min-h-screen'>
       <div className='flex-grow'>
@@ -40,8 +41,8 @@ function App() {
           <Route path='/call/:id' element={<CallDetailPage />} />
           <Route path='/admin' element={<AdminHomePage />} />
           <Route path='/admin/history' element={<CallHistoryPage />} />
+          <Route path='/result' element={<CallCompletePage />} />
           <Route path='*' element={<NotFound />} />
-
         </Routes>
       </div>
       {showNavbar && <Navbar className='h-[9.1vh]' />}

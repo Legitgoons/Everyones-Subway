@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LineIcon from './LineIcon';
 import { ReactComponent as Cone } from '../../assets/images/cone.svg';
 import Horizon from '../common/Horizon';
@@ -18,7 +18,6 @@ const dummy = {
 
 const StationInfo = () => {
   const { line, name } = useParams();
-
 
   const {
     beforeStation,
