@@ -41,7 +41,7 @@ const StationInfo = () => {
       <div className='flex w-full h-20 justify-center items-center'>
         <div className='flex justify-center items-center border rounded-4xl p3b h-9 w-1/5'>&lt; {beforeStation}</div>
         <StationInfoLine line={`${line}`} />
-        <div className={`${`bg-l${lineNameMap[line]}`} flex justify-center items-center w-1/4 h-14 rounded-lg h3b text-white rounded-4xl`}>시청역</div>
+        <div className={`${`bg-l${lineNameMap[line]}`} flex justify-center items-center w-1/4 h-14 h3b text-white rounded-4xl`}>시청역</div>
         <StationInfoLine line={`${line}`} />
         <div className='flex justify-center items-center border rounded-4xl p3b h-9 w-1/5'>{nextStation} &gt;</div>
       </div>

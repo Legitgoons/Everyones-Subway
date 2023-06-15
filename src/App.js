@@ -24,7 +24,8 @@ function App() {
     location.pathname !== '/' &&
     location.pathname !== '/routeinfo' &&
     location.pathname !== '/result' &&
-    !location.pathname.includes('/call');
+    !location.pathname.includes('/call')&&
+    !location.pathname.includes('/stationinfo');
   return (
     <div className='App flex flex-col w-screen min-h-screen'>
       <div className='flex-grow'>
