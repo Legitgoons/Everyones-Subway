@@ -9,7 +9,7 @@ const CallTable = ({ callList }) => {
     navigate(`/call/${id}`);
   };
   return (
-    <table class='table-auto w-full'>
+    <table className='table-auto w-full'>
       <thead className='border-b'>
         <tr>
           <th className='text-center'>출발역</th>
