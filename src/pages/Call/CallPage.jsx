@@ -37,7 +37,7 @@ const Modal = ({ isOpen, onClose }) => {
       <div className="bg-white rounded-lg p-8">
         <h2 className="text-lg font-bold font-suit mb-4">호출 전송하시겠습니까?</h2>
         <div className="flex justify-center">
-          <Link  className="bg-p1 text-white font-bold py-2 px-4 rounded-20">
+          <Link to='/result' className="bg-p1 text-white font-bold py-2 px-4 rounded-20">
             확인
           </Link>
           <div className="w-2"></div>
