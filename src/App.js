@@ -44,6 +44,7 @@ function App() {
           <Route path='/admin/history' element={<CallHistoryPage />} />
           <Route path='/result' element={<CallCompletePage />} />
           <Route path='*' element={<NotFound />} />
+
         </Routes>
       </div>
       {showNavbar && <Navbar className='h-[9.1vh]' />}

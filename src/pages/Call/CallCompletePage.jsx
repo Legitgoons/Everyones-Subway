@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import CallDisciption from '../../components/common/CallDisciption';
+import { Link } from "react-router-dom";
 
 const CallCompletePage = () => {
   return (
@@ -12,9 +13,9 @@ const CallCompletePage = () => {
 
       <div className='flex-grow flex'>
         <div className='h-[9.1vh] self-end w-screen justify-around shadow-button font-suit font-semibold'>
-          <button className='flex justify-center items-center w-full h-full text-white bg-p1'>
+          <Link to='/call' className='flex justify-center items-center w-full h-full text-white bg-p1'>
             확인
-          </button>
+          </Link>
         </div>
       </div>
     </div>
