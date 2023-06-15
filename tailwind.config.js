@@ -19,6 +19,8 @@ module.exports = {
         g6: '#f3f3f3',
         'g-white': '#ffffff',
 
+        warn: '#FFE038',
+
         l1: '#2B3B91',
         l2: '#61B257',
         l3: '#E0762D',
@@ -38,10 +40,10 @@ module.exports = {
         l김: '#A17800',
         l의: '#FDA600',
         l우: '#B7C452',
-        l인: '#7CA8D5	',
-        l천: '#ED8B00	',
+        l인: '#7CA8D5',
+        l천: '#ED8B00',
         l강: '#003DA5',
-        l분: '#F5A200	',
+        l분: '#F5A200',
       },
       fontFamily: {
         suit: ['SUIT', 'sans-serif'],
@@ -77,6 +79,10 @@ module.exports = {
       height: {
         100: '400px',
       },
+      boxShadow: {
+        button: '0px -4px 12px rgba(233, 233, 233, 0.25)',
+        dropTop: '0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)',
+      }
     },
   },
   plugins: [],
