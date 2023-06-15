@@ -23,7 +23,7 @@ function App() {
     location.pathname !== '/call';
 
   return (
-    <div className='App flex flex-col w-screen min-h-screen '>
+    <div className='App flex flex-col w-screen min-h-screen'>
       <div className='flex-grow'>
         <Routes>
           <Route path='/' element={<SplashPage />} />

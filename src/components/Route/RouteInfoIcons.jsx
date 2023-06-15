@@ -6,7 +6,7 @@ const RouteIcons = ({ time, line, name, fast }) => {
   return (
     <div className='flex'>
       <div className='flex basis-2/5'>
-        <p className='p3r basis-1/2'>{time}</p>
+        <p className='flex basis-1/2 justify-center items-center captionr'>{time}</p>
         <div className='flex basis-1/2'>
           <LineIcon line={lineNameMap[line]} />
           <p className='p3b pl-1'>{name}</p>
