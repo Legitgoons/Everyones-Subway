@@ -148,10 +148,7 @@ const CallPage = () => {
   };
 
   return (
-    <div
-      style={{ width: "360px", height: "800px" }}
-      className='flex flex-col items-center justify-end'
-    >
+    <div className='flex flex-col items-center'>
       <Header pageName='역무원 호출하기' canBackward />
       <div className='h-4'></div>
       <div className='flex flex-col  h-full text-left'>
@@ -210,7 +207,7 @@ const CallPage = () => {
         </div>
         <div className='h-8'></div>
 
-        <div className='flex-col '>
+        <div className='flex-col h-[50vh] overflow-scroll'>
           <div className='flex w-full'>
             <div className='w-4'></div>
             <SesacText>현재 상태</SesacText>
