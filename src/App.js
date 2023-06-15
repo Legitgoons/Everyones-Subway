@@ -36,7 +36,7 @@ function App() {
           <Route path='/routeinfo' element={<RouteInfo />} />
           <Route path='/star' element={<StarPage />} />
           <Route path='/call' element={<CallPage />} />
-          <Route path='/stationinfo' element={<StationInfo />} />
+          <Route path='/stationinfo/:line/:name' element={<StationInfo />} />
           <Route path='/call/:id' element={<CallDetailPage />} />
           <Route path='/admin' element={<AdminHomePage />} />
           <Route path='/admin/history' element={<CallHistoryPage />} />
