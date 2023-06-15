@@ -6,12 +6,19 @@ import AdminInfo from '../../components/Admin/AdminInfo';
 import Horizon from '../../components/common/Horizon';
 import SesacText from '../../components/common/SesacText';
 import CallTable from '../../components/Admin/CallTable';
+import { useNavigate } from 'react-router';
 const dummy = [
   { dipartureTime: '16:50', id: 1, state: '대기중' },
   { dipartureTime: '15:25', id: 2, state: '완료' },
   { dipartureTime: '13:40', id: 3, state: '취소' },
 ];
 const AdminHomePage = () => {
+  const navigate = useNavigate();
+
+  const handleHistoryClick = () => {
+    navigate('history');
+  };
+
   return (
     <>
       <AdminHeader pageName='모두의 지하철'></AdminHeader>
@@ -21,6 +28,7 @@ const AdminHomePage = () => {
         <div className='flex'>
           <button
             className={`w-1/2 pb-1/2 items-center rounded-20 relative border bg-p1 border-p1`}
+            onClick={handleHistoryClick}
           >
             <div className='absolute h-full w-full flex flex-col justify-center items-center '>
               <Calendar />

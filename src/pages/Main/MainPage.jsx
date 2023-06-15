@@ -16,14 +16,10 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div className='w-screen flex justify-center'>
-      <div className='h-72 -z-20'>
-        <SubwayMap />
-      </div>
-      <NavLink to='/select'>
-        <div className='absolute flex bottom-24 left-5 justify-center'>
-          <Button>경로 설정</Button>
-        </div>
+    <div className='w-screen h-[87vh] flex justify-center'>
+      <SubwayMap className='h-full -z-20 absolute' />
+      <NavLink to='/select' className={`self-end`}>
+        <Button>경로 설정</Button>
       </NavLink>
     </div>
   );

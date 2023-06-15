@@ -10,20 +10,24 @@ import StarPage from './pages/Star/StarPage';
 import CallPage from './pages/Call/CallPage';
 import AdminHomePage from './pages/Admin/AdminHomePage';
 import NotFound from './pages/NotFoundPage';
+import StationInfo from './components/Station/StationInfo';
 import './firebase-messaging-sw.js';
 
 import './App.css';
 import CallDetailPage from './pages/Admin/CallDetailPage';
+import CallHistoryPage from './pages/Admin/CallHistoryPage';
+import CallCompletePage from './pages/Call/CallCompletePage';
 
 function App() {
   const location = useLocation();
   const showNavbar =
     location.pathname !== '/' &&
     location.pathname !== '/routeinfo' &&
-    location.pathname !== '/call';
-
+    location.pathname !== '/result' &&
+    !location.pathname.includes('/call')&&
+    !location.pathname.includes('/stationinfo');
   return (
-    <div className='App flex flex-col w-screen min-h-screen '>
+    <div className='App flex flex-col w-screen min-h-screen'>
       <div className='flex-grow'>
         <Routes>
           <Route path='/' element={<SplashPage />} />
@@ -34,9 +38,13 @@ function App() {
           <Route path='/routeinfo' element={<RouteInfo />} />
           <Route path='/star' element={<StarPage />} />
           <Route path='/call' element={<CallPage />} />
+          <Route path='/stationinfo/:line/:name' element={<StationInfo />} />
           <Route path='/call/:id' element={<CallDetailPage />} />
           <Route path='/admin' element={<AdminHomePage />} />
+          <Route path='/admin/history' element={<CallHistoryPage />} />
+          <Route path='/result' element={<CallCompletePage />} />
           <Route path='*' element={<NotFound />} />
+
         </Routes>
       </div>
       {showNavbar && <Navbar className='h-[9.1vh]' />}
