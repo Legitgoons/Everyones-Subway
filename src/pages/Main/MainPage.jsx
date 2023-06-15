@@ -17,8 +17,8 @@ const MainPage = () => {
 
   return (
     <div className='w-screen flex justify-center'>
-      <div className='h-72 -z-20'>
-        <SubwayMap />
+      <div className='h-full -z-20'>
+        <SubwayMap className='h-[88vh]' />
       </div>
       <NavLink to='/select'>
         <div className='absolute flex bottom-24 left-5 justify-center'>
