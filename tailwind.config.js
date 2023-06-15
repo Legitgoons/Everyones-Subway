@@ -38,10 +38,10 @@ module.exports = {
         l김: '#A17800',
         l의: '#FDA600',
         l우: '#B7C452',
-        l인: '#7CA8D5	',
-        l천: '#ED8B00	',
+        l인: '#7CA8D5',
+        l천: '#ED8B00',
         l강: '#003DA5',
-        l분: '#F5A200	',
+        l분: '#F5A200',
       },
       fontFamily: {
         suit: ['SUIT', 'sans-serif'],
