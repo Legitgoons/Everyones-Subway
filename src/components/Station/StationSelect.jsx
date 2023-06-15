@@ -117,9 +117,9 @@ const StationSelect = ({ departure }) => {
           );
         })}
       </div>
-      <div className='h-8'></div>
+      <div className='h-5'></div>
       <Horizon />
-      <div className='h-8'></div>
+      <div className='h-5'></div>
       {!searchText && (
         <>
           <Suspense fallback={<Spinner />}>
