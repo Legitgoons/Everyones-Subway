@@ -10,7 +10,7 @@ import StarPage from './pages/Star/StarPage';
 import CallPage from './pages/Call/CallPage';
 import AdminHomePage from './pages/Admin/AdminHomePage';
 import NotFound from './pages/NotFoundPage';
-import StationInfo from './components/Station/StationInfo';
+import StationInfo from './pages/Station/StationInfoPage';
 import './firebase-messaging-sw.js';
 
 import './App.css';
@@ -44,7 +44,6 @@ function App() {
           <Route path='/admin/history' element={<CallHistoryPage />} />
           <Route path='/result' element={<CallCompletePage />} />
           <Route path='*' element={<NotFound />} />
-
         </Routes>
       </div>
       {showNavbar && <Navbar className='h-[9.1vh]' />}
