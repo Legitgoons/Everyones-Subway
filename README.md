@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+## 🚇 모두의 지하철
+#### 휠체어 이용자를 위한 지하철 App
+#### [홈페이지 바로가기](everyones-subway.vercel.app)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Guide
 
-## Available Scripts
+### User
+1. 
+2. 
+3. 
+4. 
 
-In the project directory, you can run:
+### Admin
+1. 
+2. 
+3. 
 
-### `npm start`
+## Contents
+1. [서비스를 개발하게 된 이유](#서비스를-개발하게-된-이유)
+2. [Link](#Link)
+3. [Preview](#Preview)
+5. [Skills](#Skills)
+6. [Project Control](#Project-Control)
+7. [Challenges](#Challenges)
+   
+## 서비스를 개발하게 된 이유
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Link
+ - [CSE Seat Homepage](everyones-subway.vercel.app)
+ - [Visit project repository](https://github.com/Legitgoons/Everyones-Subway)
+ - [Visit Frontend developer github](https://github.com/Legitgoons)
+ - [Visit Front/Backend developer github](https://github.com/sksksk705)
+ - [Visit Backend developer github](https://github.com/harvinat0r)
 
-### `npm test`
+## Preview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Skills
+### Frontend
+ - React
+ - Next.js
+ - Recoil
 
-### `npm run build`
+## Project Control
+- Version Control: Git, Github
+- Task Control: Notion, Figma
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Challenges
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Frontend
+- 이슈 및 에러 해결에 대해 [노션](https://www.notion.so/f6402c01f12b4ffd8e34d4e1e1b49cea)에 작성했습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Backend
