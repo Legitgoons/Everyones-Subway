@@ -38,8 +38,8 @@
 ## Skills
 ### Frontend
  - React
- - Next.js
- - Recoil
+ - Redux
+ - PWA
 
 ## Project Control
 - Version Control: Git, Github
