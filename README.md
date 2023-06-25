@@ -32,7 +32,7 @@
 ![image](https://github.com/Legitgoons/Everyones-Subway/assets/101088491/26b8665c-5104-4a88-bc00-6c99aec3b849)<br>
 
 ## Link
- - [CSE Seat Homepage](everyones-subway.vercel.app)
+ - [모두의 지하철 Homepage](everyones-subway.vercel.app)
  - [Visit project repository](https://github.com/Legitgoons/Everyones-Subway)
  - [Visit Frontend developer github](https://github.com/Legitgoons)
  - [Visit 1st Front/Backend developer github](https://github.com/sksksk705)
