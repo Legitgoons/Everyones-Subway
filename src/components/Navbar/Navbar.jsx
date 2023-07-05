@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const handleHomeClick = () => navigate('/main');
   const handleStarClick = () => navigate('/star');
-  const handleInfoClick = () => {};
+  const handleInfoClick = () => navigate('/stationinfoselect');
   //임시로 관리자페이지로 이동
   const handleMyinfoClick = () => {
     navigate('/admin');
@@ -39,7 +39,7 @@ const Navbar = () => {
         {checkCurrentPath(['/star']) ? <FooterStarOn /> : <FooterStar />}
       </button>
       <button onClick={handleInfoClick}>
-        {checkCurrentPath(['/info']) ? <FooterInfoOn /> : <FooterInfo />}
+        {checkCurrentPath(['/stationinfoselect']) ? <FooterInfoOn /> : <FooterInfo />}
       </button>
       <button onClick={handleMyinfoClick}>
         {checkCurrentPath(['/myInfo']) ? <FooterMyinfoOn /> : <FooterMyinfo />}

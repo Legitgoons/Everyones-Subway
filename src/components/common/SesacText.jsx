@@ -5,7 +5,7 @@ const SesacText = ({ children }) => {
   return (
     <div className='flex'>
       <SesacIcon></SesacIcon>
-      <div className='text-20 font-semibold'>{children}</div>
+      <div className='h4b'>{children}</div>
     </div>
   );
 };

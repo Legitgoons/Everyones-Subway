@@ -10,7 +10,8 @@ import StarPage from './pages/Star/StarPage';
 import CallPage from './pages/Call/CallPage';
 import AdminHomePage from './pages/Admin/AdminHomePage';
 import NotFound from './pages/NotFoundPage';
-import StationInfo from './pages/Station/StationInfoPage';
+import StationInfoPage from './pages/Station/StationInfoPage';
+import StationInfoSelectPage from './pages/Station/StationInfoSelectPage'; 
 import './firebase-messaging-sw.js';
 
 import './App.css';
@@ -25,7 +26,7 @@ function App() {
     location.pathname !== '/routeinfo' &&
     location.pathname !== '/result' &&
     !location.pathname.includes('/call')&&
-    !location.pathname.includes('/stationinfo');
+    !location.pathname.includes('/stationinfo/');
   return (
     <div className='App flex flex-col w-screen min-h-screen'>
       <div className='flex-grow'>
@@ -38,7 +39,8 @@ function App() {
           <Route path='/routeinfo' element={<RouteInfo />} />
           <Route path='/star' element={<StarPage />} />
           <Route path='/call' element={<CallPage />} />
-          <Route path='/stationinfo/:line/:name' element={<StationInfo />} />
+          <Route path='/stationinfoselect' element={<StationInfoSelectPage />} />
+          <Route path='/stationinfo/:line/:name' element={<StationInfoPage />} />
           <Route path='/call/:id' element={<CallDetailPage />} />
           <Route path='/admin' element={<AdminHomePage />} />
           <Route path='/admin/history' element={<CallHistoryPage />} />
