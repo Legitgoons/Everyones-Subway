@@ -18,8 +18,8 @@ import Header from "../../components/Header/Header";
 
 const dummy = [
   { station_nm: "시청", line_num: "01호선" },
-  { station_nm: "문래역", line_num: "02호선" },
-  { station_nm: "강남역", line_num: "02호선" },
+  { station_nm: "문래", line_num: "02호선" },
+  { station_nm: "강남", line_num: "02호선" },
 ];
 
 const StationInfoSelect = ({ departure }) => {
@@ -60,8 +60,7 @@ const StationInfoSelect = ({ departure }) => {
   };
 
   const handleClickSearchBtn = (wholeInfo) => () => {
-    handleClickLine(wholeInfo.line_num)();
-    handleClickStation(wholeInfo.line_num, wholeInfo.station_nm)();
+    navigate(`/stationinfo/${wholeInfo.line_num}/${wholeInfo.station_nm}`, { replace: true });
   };
 
   const handleSearchChange = (e) => {
@@ -94,7 +93,7 @@ const StationInfoSelect = ({ departure }) => {
           <input
             type="text"
             placeholder="역을 입력하세요."
-            className="font-semibold text-18"
+            className="p1b"
             onChange={handleSearchChange}
           />
         </div>

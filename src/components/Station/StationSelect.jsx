@@ -100,7 +100,7 @@ const StationSelect = ({ departure }) => {
         <input
           type='text'
           placeholder={`${departure ? '출발역' : '도착역'}을 입력하세요.`}
-          className='font-semibold text-18'
+          className='p1b'
           onChange={handleSearchChange}
         />
       </div>
