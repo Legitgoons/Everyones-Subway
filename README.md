@@ -21,9 +21,9 @@
 1. [서비스를 개발하게 된 이유](#서비스를-개발하게-된-이유)
 2. [Link](#Link)
 3. [Preview](#Preview)
-5. [Skills](#Skills)
-6. [Project Control](#Project-Control)
-7. [Challenges](#Challenges)
+4. [Skills](#Skills)
+5. [Project Control](#Project-Control)
+6. [Challenges](#Challenges)
    
 ## 서비스를 개발하게 된 이유
 ![image](https://github.com/Legitgoons/Everyones-Subway/assets/101088491/5ab691b7-c9e9-4fc3-bf57-5e68d72d5d29)<br>
