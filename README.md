@@ -1,6 +1,6 @@
 ## 🚇 모두의 지하철
 #### 휠체어 이용자를 위한 지하철 App
-#### [홈페이지 바로가기]((https://everyones-subway-legitgoons.vercel.app/))
+#### [홈페이지 바로가기](https://everyones-subway-legitgoons.vercel.app/)
 
 ## Guide
 
